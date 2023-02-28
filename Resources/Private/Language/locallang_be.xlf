@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2023-02-28T19:58:00Z" product-name="tile_maps">
+    <header />
+    <body>
+			<trans-unit id="content_element.map">
+				<source>Map</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.description">
+				<source>Output a OpenStreetMap</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.endpoint">
+				<source>Tile Proxy Endpoint</source>
+			</trans-unit>
+    </body>
+  </file>
+</xliff>

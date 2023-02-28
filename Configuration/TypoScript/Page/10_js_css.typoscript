@@ -1,0 +1,8 @@
+page {
+  includeCSS {
+   tilemapsmapcreator = EXT:tile_maps/Resources/Public/Css/MapCreator.css
+  }
+  includeJSFooter {
+    tilemapsmapcreator = EXT:tile_maps/Resources/Public/JavaScript/MapCreator.js
+  }
+}

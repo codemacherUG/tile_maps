@@ -1,0 +1,26 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Map Settings</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.tileendpoint>
+            <TCEforms>
+              <label>LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.endpoint</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <foreign_table>pages</foreign_table>
+                <minitems>1</minitems>
+                <foreign_table_where>AND doktype = 601</foreign_table_where>
+            </config>
+            </TCEforms>
+          </settings.tileendpoint>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

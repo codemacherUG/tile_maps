@@ -1,0 +1,10 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<div class="map" data-grayscale="{f:if(condition:'{data.layout}  == 1677587808',then:'true',else:'false')}"
+  data-tileendpoint="{f:uri.page(pageUid:settings.tileendpoint)}" data-bbox="{bbox}"></div>
+
+<div class="address-items">
+  <f:for each="{addresses}" as="address">
+    <f:render partial="AddressItem" arguments="{item:address}" />
+  </f:for>
+</div>
