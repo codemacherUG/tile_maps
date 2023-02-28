@@ -19,6 +19,19 @@
             </config>
             </TCEforms>
           </settings.tileendpoint>
+          <settings.bbox>
+            <label>
+                LLL:EXT:tile_proxy/Resources/Private/Language/locallang.xlf:tx_tileproxy_flexform.settings.bbox</label>
+            <config>
+                <type>user</type>
+                <renderType>boundingboxmap</renderType>
+                <eval>trim,required</eval>
+                <default>11.86,51.41,12.07,51.55</default>
+                <parameters>
+                    <decimalPlaces>8</decimalPlaces>
+                </parameters>
+            </config>
+        </settings.bbox>          
         </el>
       </ROOT>
     </sDEF>
