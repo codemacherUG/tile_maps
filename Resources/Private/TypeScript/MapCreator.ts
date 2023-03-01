@@ -1,4 +1,4 @@
-import OpenLayerMap from "./MapProvider/OpenLayerMap";
+import LeafletMap from "./MapProvider/LeafletMap";
 import AddressItems from "./AddressItems";
 
 class MapCreator {
@@ -8,7 +8,7 @@ class MapCreator {
       const container = elements[i] as HTMLElement;
       const mapElement = container.querySelector('.map') as HTMLElement;
       const addressItems = new AddressItems(container);
-      const maps = new OpenLayerMap(mapElement);
+      const maps = new LeafletMap(mapElement);
       maps.addMarkers(addressItems);
     }
   }

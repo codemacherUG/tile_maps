@@ -7,31 +7,79 @@
         </TCEforms>
         <type>array</type>
         <el>
-          <settings.tileendpoint>
+          <settings.tileEndpoint>
             <TCEforms>
-              <label>LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.endpoint</label>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.endpoint</label>
               <config>
                 <type>select</type>
                 <renderType>selectSingle</renderType>
                 <foreign_table>pages</foreign_table>
                 <minitems>1</minitems>
                 <foreign_table_where>AND doktype = 601</foreign_table_where>
-            </config>
+              </config>
             </TCEforms>
-          </settings.tileendpoint>
-          <settings.bbox>
+          </settings.tileEndpoint>
+          <settings.initialView>
             <label>
-                LLL:EXT:tile_proxy/Resources/Private/Language/locallang.xlf:tx_tileproxy_flexform.settings.bbox</label>
+              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.initialview</label>
             <config>
-                <type>user</type>
-                <renderType>boundingboxmap</renderType>
-                <eval>trim,required</eval>
-                <default>11.86,51.41,12.07,51.55</default>
-                <parameters>
-                    <decimalPlaces>8</decimalPlaces>
-                </parameters>
+              <type>user</type>
+              <renderType>centerzoommap</renderType>
+              <eval>trim,required</eval>
+              <default>51.498396, 11.941125, 14</default>
             </config>
-        </settings.bbox>          
+          </settings.initialView>
+          <settings.setMaxBounds>
+            <label>
+              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.setmaxbounds</label>
+            <config>
+              <type>check</type>
+              <items type="array">
+                <numIndex index="0" type="array">
+                  <numIndex index="0">
+                    LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                  <numIndex index="1"></numIndex>
+                </numIndex>
+              </items>
+            </config>
+          </settings.setMaxBounds>
+          <settings.minZoom>
+            <label>
+              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.minzoom</label>
+            <config>
+              <type>input</type>
+              <size>10</size>
+              <eval>trim,int</eval>
+              <range>
+                <lower>0</lower>
+                <upper>18</upper>
+              </range>
+              <default>14</default>
+              <slider>
+                <step>1</step>
+                <width>200</width>
+              </slider>
+            </config>
+          </settings.minZoom>
+          <settings.maxZoom>
+            <label>
+              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.maxzoom</label>
+            <config>
+              <type>input</type>
+              <size>10</size>
+              <eval>trim,int</eval>
+              <range>
+                <lower>0</lower>
+                <upper>18</upper>
+              </range>
+              <default>18</default>
+              <slider>
+                <step>1</step>
+                <width>200</width>
+              </slider>
+            </config>
+          </settings.maxZoom>
         </el>
       </ROOT>
     </sDEF>

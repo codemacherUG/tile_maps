@@ -1,4 +1,6 @@
-@import "ol/ol.css";
+
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.css";
 
 .frame-type-tilemaps_map {
   .map {

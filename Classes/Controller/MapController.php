@@ -21,14 +21,16 @@ class MapController extends ActionController
   public function displayAction()
   {
     $contentObj = $this->configurationManager->getContentObject();
-    $flexFormSettings = $this->flexFormService->convertFlexFormContentToArray($contentObj->data['pi_flexform'])['settings'];
+    $settings = $this->flexFormService->convertFlexFormContentToArray($contentObj->data['pi_flexform'])['settings'];
 
-    $tileEndpointPageRecord = BackendUtility::getRecord("pages", $flexFormSettings['tileendpoint']);
+    $tileEndpointPageRecord = BackendUtility::getRecord("pages", $settings['tileEndpoint']);
     $tileEndpointPageRecordFlexFormSettings = $this->flexFormService->convertFlexFormContentToArray($tileEndpointPageRecord['tx_tileproxy_flexform'])['settings'];
+
     $addresses = $this->addressRepository->findAll();
+    $settings['bbox'] = $tileEndpointPageRecordFlexFormSettings['bbox'];
+    $settings['grayscale'] = $contentObj->data['layout']  == '1677587808';
     $this->view->assign("addresses",$addresses);
-    $this->view->assign("bbox",$tileEndpointPageRecordFlexFormSettings['bbox']);
     $this->view->assign("data", $contentObj->data);
-    $this->view->assign("settings",$flexFormSettings);
+    $this->view->assign("settings",$settings);
   }
 }

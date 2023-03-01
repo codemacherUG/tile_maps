@@ -12,6 +12,24 @@
 			<trans-unit id="content_element.map.settings.endpoint">
 				<source>Tile Proxy Endpoint</source>
 			</trans-unit>
+			<trans-unit id="content_element.map.settings.setmaxbounds">
+				<source>Set the bounding box of the endpoint as maximum bounds of the map</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.yes">
+				<source>Yes</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.minzoom">
+				<source>Minimal Zoomlevel</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.maxzoom">
+				<source>Maximal Zoomlevel</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.initialview">
+				<source>Inital center and  zoomlevel ( Format: Lng, Lat, Zoomlevel )</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.pages">
+				<source>Source folder for markers(tt_address)</source>
+			</trans-unit>
     </body>
   </file>
 </xliff>

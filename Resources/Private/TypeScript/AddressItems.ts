@@ -10,7 +10,6 @@ export default class AddressItems {
     for(let i=0;i<elements.length;i++) {
       this.items.push(new AddressItem(elements[i] as HTMLElement));
     }
-    console.log(this.items);
   }
 }
 

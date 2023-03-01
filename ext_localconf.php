@@ -21,7 +21,15 @@ use Codemacher\TileMaps\Controller\MapController;
       'pi_flexform',
       'pages'
     ])
-    ->setControllerActions([MapController::class => "display"]);
+    ->setControllerActions([MapController::class => "display"])
+    ->addCustomConfig([
+      'columnsOverrides' => [
+        'pages' => [
+          'label' => "LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.pages"
+         ],
+      ]
+    ]
+  );
 
   PluginRegisterFacade::configureAllPlugins();
 })();
