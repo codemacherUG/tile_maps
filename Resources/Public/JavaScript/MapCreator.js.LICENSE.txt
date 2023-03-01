@@ -3,8 +3,6 @@
  * (c) 2010-2022 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
-/*! ../Leaflet/TileLayer.Grayscale */
-
 /*! ./AddressItem */
 
 /*! ./AddressItems */
@@ -38,10 +36,6 @@
 /*!*****************************************************************!*\
   !*** ../Resources/Private/TypeScript/MapProvider/LeafletMap.ts ***!
   \*****************************************************************/
-
-/*!**********************************************************************!*\
-  !*** ../Resources/Private/TypeScript/Leaflet/TileLayer.Grayscale.js ***!
-  \**********************************************************************/
 
 /*!******************************************************************************!*\
   !*** ./node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js ***!

@@ -1,28 +1,29 @@
 import AddressItems from '../AddressItems';
 import L from "leaflet";
 import "leaflet.markercluster";
-import "../Leaflet/TileLayer.Grayscale";
 
 export default class LeafletMap {
 
+  private markers: L.MarkerClusterGroup;
+  private defaultMarkerIcon: L.Icon;
 
   public constructor(element: HTMLElement) {
 
     const settings = JSON.parse(element.dataset.settings);
     const tileEndpoint = element.dataset.tileendpoint;
-     
-    const bbox =settings.bbox.split(',').map(function (item : string)  {
+
+    const bbox = settings.bbox.split(',').map(function (item: string) {
       return parseFloat(item);
     });
 
-    const initialView =settings.initialView.split(',').map(function (item : string)  {
+    const initialView = settings.initialView.split(',').map(function (item: string) {
       return parseFloat(item);
     });
-    
-    const bounds = L.latLngBounds(L.latLng(bbox[1],bbox[0]),L.latLng(bbox[3],bbox[2]));
+
+    const bounds = L.latLngBounds(L.latLng(bbox[1], bbox[0]), L.latLng(bbox[3], bbox[2]));
 
     // Initialize the map
-    let map = L.map(element, {
+    const map = L.map(element, {
       scrollWheelZoom: false,
       minZoom: parseInt(settings.minZoom ?? "0"),
       maxZoom: parseInt(settings.maxZoom ?? "18")
@@ -30,27 +31,35 @@ export default class LeafletMap {
 
     const endPointUrl = tileEndpoint + '/?provider=osm&z={z}&x={x}&y={y}&s={s}';
 
-    if(settings.grayscale) {
-      L.tileLayer.grayscale(endPointUrl, {
-        attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    L.tileLayer(endPointUrl, {
+      attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 
-      }).addTo(map);
-    } else {
-      L.tileLayer(endPointUrl, {
-        attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
 
-      }).addTo(map);
-    }
-    if(settings.setMaxBounds > 0) {
+    this.markers = L.markerClusterGroup();
+    map.addLayer(this.markers);
+
+    if (settings.setMaxBounds > 0) {
       map.setMaxBounds(bounds);
     }
-    map.setView( L.latLng(initialView[1], initialView[0]), initialView[2]);
+    map.setView(L.latLng(initialView[1], initialView[0]), initialView[2]);
+
+    this.defaultMarkerIcon = L.icon({
+      iconRetinaUrl: settings.resourceUrl + 'marker-icon-2x.png',
+      iconUrl: settings.resourceUrl + 'marker-icon.png',
+      shadowUrl: settings.resourceUrl + 'marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    });
   }
 
   public addMarkers(addressItems: AddressItems): void {
     for (let i = 0; i < addressItems.items.length; i++) {
       let item = addressItems.items[i];
-
+      L.marker([item.getLatitude(), item.getLongitude()], { icon: this.defaultMarkerIcon }).addTo(this.markers);
     }
   }
 

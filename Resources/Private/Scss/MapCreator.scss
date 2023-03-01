@@ -1,4 +1,3 @@
-
 @import "~leaflet/dist/leaflet.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 
@@ -6,5 +5,11 @@
   .map {
     height: 400px;
     width: 100%;
+  }
+  &.frame-layout-1677587808 {
+    .leaflet-tile-pane {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
   }
 }
