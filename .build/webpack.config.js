@@ -142,6 +142,9 @@ module.exports = function (env, args) {
     MapCreator: [path.resolve(__dirname, '../Resources/Private/TypeScript/MapCreator.ts'), path.resolve(__dirname, '../Resources/Private/Scss/MapCreator.scss')],
   };
   modules.output.path = path.resolve(__dirname, '../Resources/Public/JavaScript');
-  modules.externals = {};
+  modules.externals = {
+      Select2: 'select2',
+      jquery: 'jQuery',
+  };
   return [modules];
 };

@@ -3,7 +3,8 @@
     <sDEF>
       <ROOT>
         <TCEforms>
-          <sheetTitle>Map Settings</sheetTitle>
+          <sheetTitle>
+            LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.tab.general</sheetTitle>
         </TCEforms>
         <type>array</type>
         <el>
@@ -21,67 +22,134 @@
             </TCEforms>
           </settings.tileEndpoint>
           <settings.initialView>
-            <label>
-              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.initialview</label>
-            <config>
-              <type>user</type>
-              <renderType>centerzoommap</renderType>
-              <eval>trim,required</eval>
-              <default>51.498396, 11.941125, 14</default>
-            </config>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.initialview</label>
+              <config>
+                <type>user</type>
+                <renderType>centerzoommap</renderType>
+                <eval>trim,required</eval>
+                <default>51.498396, 11.941125, 14</default>
+              </config>
+            </TCEforms>
           </settings.initialView>
           <settings.setMaxBounds>
-            <label>
-              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.setmaxbounds</label>
-            <config>
-              <type>check</type>
-              <items type="array">
-                <numIndex index="0" type="array">
-                  <numIndex index="0">
-                    LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
-                  <numIndex index="1"></numIndex>
-                </numIndex>
-              </items>
-            </config>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.setmaxbounds</label>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
           </settings.setMaxBounds>
           <settings.minZoom>
-            <label>
-              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.minzoom</label>
-            <config>
-              <type>input</type>
-              <size>10</size>
-              <eval>trim,int</eval>
-              <range>
-                <lower>0</lower>
-                <upper>18</upper>
-              </range>
-              <default>14</default>
-              <slider>
-                <step>1</step>
-                <width>200</width>
-              </slider>
-            </config>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.minzoom</label>
+              <config>
+                <type>input</type>
+                <size>10</size>
+                <eval>trim,int</eval>
+                <range>
+                  <lower>0</lower>
+                  <upper>18</upper>
+                </range>
+                <default>14</default>
+                <slider>
+                  <step>1</step>
+                  <width>200</width>
+                </slider>
+              </config>
+            </TCEforms>
           </settings.minZoom>
           <settings.maxZoom>
-            <label>
-              LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.maxzoom</label>
-            <config>
-              <type>input</type>
-              <size>10</size>
-              <eval>trim,int</eval>
-              <range>
-                <lower>0</lower>
-                <upper>18</upper>
-              </range>
-              <default>18</default>
-              <slider>
-                <step>1</step>
-                <width>200</width>
-              </slider>
-            </config>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.maxzoom</label>
+              <config>
+                <type>input</type>
+                <size>10</size>
+                <eval>trim,int</eval>
+                <range>
+                  <lower>0</lower>
+                  <upper>18</upper>
+                </range>
+                <default>18</default>
+                <slider>
+                  <step>1</step>
+                  <width>200</width>
+                </slider>
+              </config>
+            </TCEforms>
           </settings.maxZoom>
         </el>
       </ROOT>
     </sDEF>
+
+    <geolocation>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>
+            LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.tab.geolocation</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.enableLocationDetectionButton>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.enablelocationdetectionbutton</label>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.enableLocationDetectionButton>
+          <settings.enableGeoLocationSearch>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.enablegeolocationsearch</label>
+              <onChange>reload</onChange>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.enableGeoLocationSearch>
+          <settings.nominatimEndpoint>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.nominatimendpoint</label>
+              <displayCond>FIELD:settings.enableGeoLocationSearch:=:1</displayCond>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <foreign_table>pages</foreign_table>
+                <minitems>1</minitems>
+                <foreign_table_where>AND doktype = 602</foreign_table_where>
+              </config>
+            </TCEforms>
+          </settings.nominatimEndpoint>
+        </el>
+      </ROOT>
+    </geolocation>
   </sheets>
 </T3DataStructure>

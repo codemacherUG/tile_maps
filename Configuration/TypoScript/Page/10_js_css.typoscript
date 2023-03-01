@@ -3,6 +3,11 @@ page {
    tilemapsmapcreator = EXT:tile_maps/Resources/Public/Css/MapCreator.css
   }
   includeJSFooter {
+    jquery = EXT:tile_maps/Resources/Public/JavaScript/vendor/jquery/jquery-3.6.3.min.js
+    select2 = EXT:tile_maps/Resources/Public/JavaScript/vendor/select2/js/select2.full.min.js
+    select2_es = EXT:tile_maps/Resources/Public/JavaScript/vendor/select2/js/i18n/es.js
+    select2_de = EXT:tile_maps/Resources/Public/JavaScript/vendor/select2/js/i18n/de.js
+    select2_en = EXT:tile_maps/Resources/Public/JavaScript/vendor/select2/js/i18n/en.js
     tilemapsmapcreator = EXT:tile_maps/Resources/Public/JavaScript/MapCreator.js
   }
 }

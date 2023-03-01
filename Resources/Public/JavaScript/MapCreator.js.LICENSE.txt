@@ -3,18 +3,49 @@
  * (c) 2010-2022 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
+/*!
+ * Select2 4.1.0-rc.0
+ * https://select2.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/select2/select2/blob/master/LICENSE.md
+ */
+
+/*!
+Copyright (c) 2016 Dominik Moritz
+
+This file is part of the leaflet locate control. It is licensed under the MIT license.
+You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
+*/
+
 /*! ./AddressItem */
 
 /*! ./AddressItems */
 
-/*! ./MapProvider/LeafletMap */
+/*! ./GeoSearchController */
+
+/*! ./MapProvider/LeafletMapController */
+
+/*! jquery */
 
 /*! leaflet */
 
+/*! leaflet.locatecontrol */
+
 /*! leaflet.markercluster */
+
+/*! select2 */
+
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
 
 /*!*************************************************!*\
   !*** ../Resources/Private/Scss/MapCreator.scss ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/select2/dist/js/select2.js ***!
   \*************************************************/
 
 /*!**************************************************!*\
@@ -33,9 +64,17 @@
   !*** ../Resources/Private/TypeScript/AddressItems.ts ***!
   \*******************************************************/
 
-/*!*****************************************************************!*\
-  !*** ../Resources/Private/TypeScript/MapProvider/LeafletMap.ts ***!
-  \*****************************************************************/
+/*!**************************************************************!*\
+  !*** ../Resources/Private/TypeScript/GeoSearchController.ts ***!
+  \**************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/leaflet.locatecontrol/src/L.Control.Locate.js ***!
+  \********************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ../Resources/Private/TypeScript/MapProvider/LeafletMapController.ts ***!
+  \***************************************************************************/
 
 /*!******************************************************************************!*\
   !*** ./node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js ***!

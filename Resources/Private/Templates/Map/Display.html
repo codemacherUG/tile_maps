@@ -1,6 +1,12 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<div class="map" data-tileendpoint="{f:uri.page(pageUid:settings.tileEndpoint)}" data-settings="{f:format.json(value: settings)}"></div>
+<div class="map" data-endpoint="{f:uri.page(pageUid:settings.tileEndpoint)}"
+  data-settings="{f:format.json(value: settings)}"></div>
+<f:if condition="{settings.enableGeoLocationSearch}">
+  <div class="geo-search" data-endpoint="{f:uri.page(pageUid:settings.nominatimEndpoint)}">
+    <select class="geo-search" name="geo-search-select"></select>
+  </div>
+</f:if>
 <div class="address-items">
   <f:for each="{addresses}" as="address">
     <f:render partial="AddressItem" arguments="{item:address}" />
