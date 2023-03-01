@@ -1,6 +1,6 @@
-import LeafletMapController from "./MapProvider/LeafletMapController";
-import GeoSearchController from "./GeoSearchController";
-import AddressItems from "./AddressItems";
+import LeafletMapController from "./Controller/LeafletMapController";
+import GeoSearchController from "./Controller/GeoSearchController";
+import AddressListController from "./Controller/AddressListController";
 
 class MapCreator {
   public constructor() {
@@ -8,8 +8,14 @@ class MapCreator {
     for (let i = 0; i < elements.length; i++) {
       const container = elements[i] as HTMLElement;
       const mapElement = container.querySelector('.map') as HTMLElement;
-      const addressItems = new AddressItems(container);
-      const maps = new LeafletMapController(mapElement);
+      const addressList = new AddressListController(container);
+      const maps = new LeafletMapController(mapElement, (lat: number | null, lng: number | null) => {
+        if (lat == null || lng == null) {
+          addressList.clearDistance();
+        } else {
+          addressList.calculateDistanceToLocation(lat as number, lng as number);
+        }
+      });
       const geoSearchElement = container.querySelector('.geo-search') as HTMLElement;
       if (geoSearchElement) {
         const geoSearch = new GeoSearchController(geoSearchElement, (lat: number | null, lng: number | null) => {
@@ -17,10 +23,11 @@ class MapCreator {
             maps.removeSearchedPosition();
           } else {
             maps.setSearchedPosition(lat as number, lng as number);
+            addressList.calculateDistanceToLocation(lat as number, lng as number);
           }
         });
       }
-      maps.addMarkers(addressItems);
+      maps.addMarkers(addressList.items);
     }
   }
 }

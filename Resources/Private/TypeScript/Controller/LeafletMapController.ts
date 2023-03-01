@@ -1,4 +1,4 @@
-import AddressItems from '../AddressItems';
+import AddressItem from '../Data/AddressItem';
 import L from "leaflet";
 import "leaflet.markercluster";
 import "leaflet.locatecontrol";
@@ -11,7 +11,7 @@ export default class LeafletMapController {
   private searchedLocationMarker: L.Marker;
   private map: L.Map;
 
-  public constructor(element: HTMLElement) {
+  public constructor(element: HTMLElement, onLocationFound: (lat: number | null, lng: number | null) => void) {
 
     const settings = JSON.parse(element.dataset.settings ?? "");
     const endpoint = element.dataset.endpoint;
@@ -53,6 +53,10 @@ export default class LeafletMapController {
       locationControl.addTo(this.map);
     }
 
+    this.map.on("locationfound",(e) => {
+      onLocationFound(e.latlng.lat,e.latlng.lng);
+    });
+
 
     this.defaultMarkerIcon = L.icon({
       iconRetinaUrl: settings.resourceUrl + 'marker-icon-2x.png',
@@ -81,9 +85,9 @@ export default class LeafletMapController {
 
   }
 
-  public addMarkers(addressItems: AddressItems): void {
-    for (let i = 0; i < addressItems.items.length; i++) {
-      let item = addressItems.items[i];
+  public addMarkers(addressItems: Array<AddressItem>): void {
+    for (let i = 0; i < addressItems.length; i++) {
+      let item = addressItems[i];
       if (item.getLatitude() != null && item.getLongitude() != null) {
         L.marker([item.getLatitude() ?? 0, item.getLongitude() ?? 0], { icon: this.defaultMarkerIcon }).addTo(this.markers);
       }

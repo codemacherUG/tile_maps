@@ -18,13 +18,13 @@ This file is part of the leaflet locate control. It is licensed under the MIT li
 You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
 */
 
-/*! ./AddressItem */
+/*! ../Data/AddressItem */
 
-/*! ./AddressItems */
+/*! ./Controller/AddressListController */
 
-/*! ./GeoSearchController */
+/*! ./Controller/GeoSearchController */
 
-/*! ./MapProvider/LeafletMapController */
+/*! ./Controller/LeafletMapController */
 
 /*! jquery */
 
@@ -56,24 +56,24 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
   !*** ../Resources/Private/TypeScript/MapCreator.ts ***!
   \*****************************************************/
 
-/*!******************************************************!*\
-  !*** ../Resources/Private/TypeScript/AddressItem.ts ***!
-  \******************************************************/
-
-/*!*******************************************************!*\
-  !*** ../Resources/Private/TypeScript/AddressItems.ts ***!
-  \*******************************************************/
-
-/*!**************************************************************!*\
-  !*** ../Resources/Private/TypeScript/GeoSearchController.ts ***!
-  \**************************************************************/
+/*!***********************************************************!*\
+  !*** ../Resources/Private/TypeScript/Data/AddressItem.ts ***!
+  \***********************************************************/
 
 /*!********************************************************************!*\
   !*** ./node_modules/leaflet.locatecontrol/src/L.Control.Locate.js ***!
   \********************************************************************/
 
+/*!*************************************************************************!*\
+  !*** ../Resources/Private/TypeScript/Controller/GeoSearchController.ts ***!
+  \*************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ../Resources/Private/TypeScript/Controller/LeafletMapController.ts ***!
+  \**************************************************************************/
+
 /*!***************************************************************************!*\
-  !*** ../Resources/Private/TypeScript/MapProvider/LeafletMapController.ts ***!
+  !*** ../Resources/Private/TypeScript/Controller/AddressListController.ts ***!
   \***************************************************************************/
 
 /*!******************************************************************************!*\
