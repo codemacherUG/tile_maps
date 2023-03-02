@@ -29,7 +29,7 @@
                 <type>user</type>
                 <renderType>centerzoommap</renderType>
                 <eval>trim,required</eval>
-                <default>51.498396, 11.941125, 14</default>
+                <default>11.941125, 51.498396, 14</default>
               </config>
             </TCEforms>
           </settings.initialView>

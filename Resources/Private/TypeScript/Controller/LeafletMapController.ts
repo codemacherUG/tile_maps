@@ -10,12 +10,13 @@ export default class LeafletMapController {
   private defaultMarkerIcon: L.Icon;
   private searchedLocationMarker: L.Marker;
   private map: L.Map;
+  private locationIsFound = false;
 
   public constructor(element: HTMLElement, onLocationFound: (lat: number | null, lng: number | null) => void) {
 
     const settings = JSON.parse(element.dataset.settings ?? "");
     const endpoint = element.dataset.endpoint;
-
+    
     const bbox = settings.bbox.split(',').map(function (item: string) {
       return parseFloat(item);
     });
@@ -52,11 +53,18 @@ export default class LeafletMapController {
       const locationControl = L.control.locate();
       locationControl.addTo(this.map);
     }
-
+    
     this.map.on("locationfound",(e) => {
-      onLocationFound(e.latlng.lat,e.latlng.lng);
+      if(!this.locationIsFound) {
+        this.locationIsFound = true;
+        onLocationFound(e.latlng.lat,e.latlng.lng);
+      }
     });
 
+    this.map.on("click", function (event) {
+      console.log(event);
+      // do some stuff…
+    });
 
     this.defaultMarkerIcon = L.icon({
       iconRetinaUrl: settings.resourceUrl + 'marker-icon-2x.png',
@@ -81,8 +89,12 @@ export default class LeafletMapController {
           tooltipAnchor: [16, -28],
           shadowSize: [41, 41]
         })
-      });
+      }).on("click",this.selectMarkerLocation)
 
+  }
+
+  protected selectMarkerLocation(e:any) : void {
+    console.log(e);
   }
 
   public addMarkers(addressItems: Array<AddressItem>): void {
