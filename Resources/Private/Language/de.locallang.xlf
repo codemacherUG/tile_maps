@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2023-03-01T20:09:00Z" product-name="tile_maps">
+  <file source-language="en" target-language="de" original="EXT:tile_maps/Resources/Private/Language/locallang.xlf" datatype="plaintext" date="2023-03-01T20:09:00Z" product-name="tile_maps">
     <header />
     <body>
 			<trans-unit id="distance-to-location">
 				<source>Distance to Location</source>
+				<target>Entfernung zum Standort</target>
 			</trans-unit>
       <trans-unit id="leaflet.locatecontrol.title">
 				<source>Show me where I am</source>
+				<target>Zeig mir, wo ich bin</target>
 			</trans-unit>
       <trans-unit id="leaflet.locatecontrol.metersUnit">
 				<source>meters</source>
+				<target>Meter</target>
 			</trans-unit>
       <trans-unit id="leaflet.locatecontrol.feetUnit">
 				<source>feet</source>
+				<target>Fuß</target>
 			</trans-unit>
       <trans-unit id="leaflet.locatecontrol.popup">
 				<source>You are within {distance} {unit} from this point</source>
+				<target>Sie befinden sich in {distance} {unit} von diesem Punkt</target>
 			</trans-unit>
       <trans-unit id="leaflet.locatecontrol.outsideMapBoundsMsg">
 				<source>You seem located outside the boundaries of the map</source>
+				<target>Sie scheinen sich außerhalb der Grenzen der Karte zu befinden</target>
 			</trans-unit>
     </body>
   </file>

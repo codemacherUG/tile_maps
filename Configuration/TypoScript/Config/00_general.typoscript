@@ -1,0 +1,23 @@
+plugin.tx_tilemaps {
+	view {
+		templateRootPaths {
+			0 = EXT:tile_maps/Resources/Private/Templates/
+			1 = {$plugin.tx_tilemaps.view.templateRootPath}
+		}
+
+		partialRootPaths {
+			0 = EXT:tile_maps/Resources/Private/Partials/
+			1 = {$plugin.tx_tilemaps.view.partialRootPath}
+		}
+
+		layoutRootPaths {
+			0 = EXT:tile_maps/Resources/Private/Layouts/
+			1 = {$plugin.tx_tilemaps.view.layoutRootPath}
+		}
+	}
+	settings {
+		iconPath = EXT:tile_maps/Resources/Public/Icons/
+	}
+}
+
+

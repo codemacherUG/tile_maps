@@ -12,6 +12,7 @@
 			<trans-unit id="content_element.map.settings.endpoint">
 				<source>Tile Proxy Endpoint</source>
 			</trans-unit>
+			
 			<trans-unit id="content_element.map.settings.setmaxbounds">
 				<source>Set the bounding box of the endpoint as maximum bounds of the map</source>
 			</trans-unit>
@@ -38,15 +39,15 @@
 			<trans-unit id="content_element.map.settings.tab.geolocation">
 				<source>Location Search</source>
 			</trans-unit>
-
 			<trans-unit id="content_element.map.settings.enablegeolocationsearch">
 				<source>Activate location search field</source>
 			</trans-unit>
-
 			<trans-unit id="content_element.map.settings.enablelocationdetectionbutton">
 				<source>Add Location detection Button</source>
 			</trans-unit>
-			
+			<trans-unit id="content_element.map.settings.nominatimendpoint">
+				<source>Nominatim Proxy Endpoint</source>
+			</trans-unit>			
 			
 			
     </body>

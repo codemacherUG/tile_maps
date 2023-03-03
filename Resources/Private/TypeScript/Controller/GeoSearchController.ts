@@ -1,10 +1,11 @@
 
 import $ from "jquery";
 import "select2";
+import {onLocationFoundCallBack} from '../Types';
 
 export default class GeoSearchController {
 
-  public constructor(element: HTMLElement, onLocationFound: (lat: number | null, lng: number | null) => void) {
+  public constructor(element: HTMLElement, onLocationFound: onLocationFoundCallBack) {
     const $geosearchselect = $("[name=geo-search-select]", element);
     const endpoint = element.dataset.endpoint;
 

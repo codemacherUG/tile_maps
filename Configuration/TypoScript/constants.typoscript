@@ -1,0 +1,8 @@
+
+plugin.tx_tilemaps {
+	view {
+		templateRootPath = EXT:tile_maps/Resources/Private/Templates/
+		partialRootPath = EXT:tile_maps/Resources/Private/Partials/  
+		layoutRootPath = EXT:tile_maps/Resources/Private/Layouts/
+	}
+}

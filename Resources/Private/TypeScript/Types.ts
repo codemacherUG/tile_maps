@@ -1,0 +1,1 @@
+export type onLocationFoundCallBack = (lat: number | null, lng: number | null) => void;
