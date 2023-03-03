@@ -48,7 +48,12 @@
 			<trans-unit id="content_element.map.settings.nominatimendpoint">
 				<source>Nominatim Proxy Endpoint</source>
 			</trans-unit>			
-			
+			<trans-unit id="content_element.map.settings.hidemarkerlist">
+				<source>Hide marker list</source>
+			</trans-unit>		
+			<trans-unit id="content_element.map.settings.enablemarkerpopup">
+				<source>Enable marker popup on click</source>
+			</trans-unit>		
 			
     </body>
   </file>

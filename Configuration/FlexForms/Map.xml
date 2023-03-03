@@ -89,6 +89,38 @@
               </config>
             </TCEforms>
           </settings.maxZoom>
+          <settings.enableMarkerPopUp>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.enablemarkerpopup</label>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.enableMarkerPopUp>            
+          <settings.hideMarkerList>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.hidemarkerlist</label>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.hideMarkerList>          
         </el>
       </ROOT>
     </sDEF>

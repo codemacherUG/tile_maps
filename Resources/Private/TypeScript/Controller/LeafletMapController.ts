@@ -15,26 +15,27 @@ export default class LeafletMapController {
   private hightlightMarkerIcon: L.Icon;
   private searchedLocationMarker: L.Marker;
   private map: L.Map;
-  private onLocationUpdate: onLocationUpdateCallBack;
-  private onAddressItemSelected: onAddressItemHighlightCallBack;
- 
+  private settings:any;
   private markerMap = new Map<AddressItem, L.Marker>();
+
   public onRefPositionMoved: onLocationUpdateCallBack;
+  public onLocationUpdate: onLocationUpdateCallBack;
+  public onAddressItemSelected: onAddressItemHighlightCallBack;
 
   public constructor(element: HTMLElement, onLocationFound: onLocationUpdateCallBack, onRefPositionMoved: onLocationUpdateCallBack, onAddressItemSelected: onAddressItemHighlightCallBack) {
 
     this.onLocationUpdate = onLocationFound;
     this.onAddressItemSelected = onAddressItemSelected;
     this.onRefPositionMoved = onRefPositionMoved;
-    const settings = JSON.parse(element.dataset.settings ?? "");
+    this.settings = JSON.parse(element.dataset.settings ?? "");
     const endpoint = element.dataset.endpoint;
 
 
-    const bbox = settings.bbox.split(',').map(function (item: string) {
+    const bbox = this.settings.bbox.split(',').map(function (item: string) {
       return parseFloat(item);
     });
 
-    const initialView = settings.initialView.split(',').map(function (item: string) {
+    const initialView = this.settings.initialView.split(',').map(function (item: string) {
       return parseFloat(item);
     });
 
@@ -43,8 +44,8 @@ export default class LeafletMapController {
     // Initialize the map
     this.map = L.map(element, {
       scrollWheelZoom: false,
-      minZoom: parseInt(settings.minZoom ?? "0"),
-      maxZoom: parseInt(settings.maxZoom ?? "18")
+      minZoom: parseInt(this.settings.minZoom ?? "0"),
+      maxZoom: parseInt(this.settings.maxZoom ?? "18")
     });
 
     const endPointUrl = endpoint + '/?provider=osm&z={z}&x={x}&y={y}&s={s}';
@@ -62,12 +63,12 @@ export default class LeafletMapController {
     this.map.addLayer(this.markerCluster);
     this.locationMarkerLayer = new L.LayerGroup();
 
-    if (settings.setMaxBounds > 0) {
+    if (this.settings.setMaxBounds > 0) {
       this.map.setMaxBounds(bounds);
     }
     this.map.setView(L.latLng(initialView[1], initialView[0]), initialView[2]);
 
-    if (settings.enableLocationDetectionButton > 0) {
+    if (this.settings.enableLocationDetectionButton > 0) {
       let TYPO3 = (window as any).TYPO3;
       L.control.locate({
         showPopup: false,
@@ -110,9 +111,9 @@ export default class LeafletMapController {
     });
 
     this.defaultMarkerIcon = L.icon({
-      iconRetinaUrl: settings.resourceUrl + 'marker-icon-2x.png',
-      iconUrl: settings.resourceUrl + 'marker-icon.png',
-      shadowUrl: settings.resourceUrl + 'marker-shadow.png',
+      iconRetinaUrl: this.settings.resourceUrl + 'marker-icon-2x.png',
+      iconUrl: this.settings.resourceUrl + 'marker-icon.png',
+      shadowUrl: this.settings.resourceUrl + 'marker-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
@@ -121,9 +122,9 @@ export default class LeafletMapController {
     });
 
     this.hightlightMarkerIcon = L.icon({
-      iconRetinaUrl: settings.resourceUrl + 'marker-highlight-icon-2x.png',
-      iconUrl: settings.resourceUrl + 'marker-highlight-icon.png',
-      shadowUrl: settings.resourceUrl + 'marker-highlight-shadow.png',
+      iconRetinaUrl: this.settings.resourceUrl + 'marker-highlight-icon-2x.png',
+      iconUrl: this.settings.resourceUrl + 'marker-highlight-icon.png',
+      shadowUrl: this.settings.resourceUrl + 'marker-highlight-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
@@ -135,9 +136,9 @@ export default class LeafletMapController {
       L.marker([0, 0], {
         draggable: true,
         icon: L.icon({
-          iconRetinaUrl: settings.resourceUrl + 'marker-searched-icon-2x.png',
-          iconUrl: settings.resourceUrl + 'marker-searched-icon.png',
-          shadowUrl: settings.resourceUrl + 'marker-searched-hadow.png',
+          iconRetinaUrl: this.settings.resourceUrl + 'marker-searched-icon-2x.png',
+          iconUrl: this.settings.resourceUrl + 'marker-searched-icon.png',
+          shadowUrl: this.settings.resourceUrl + 'marker-searched-hadow.png',
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
@@ -166,6 +167,9 @@ export default class LeafletMapController {
           icon: this.defaultMarkerIcon,
           addressItem: item
         });
+        if (this.settings.enableMarkerPopUp) {
+          marker.bindPopup(item.getMarkerHtml());
+        }
         marker.addTo(this.markerCluster)
           .on("click", (e: any) => {
             this.onAddressItemSelected(HightlightTriggerReason.selected, e.sourceTarget.options.addressItem);
@@ -195,7 +199,7 @@ export default class LeafletMapController {
   public select(hightlight: HightlightTriggerReason, addressItem: AddressItem): void {
 
     const marker = this.markerMap.get(addressItem);
-    
+
     if (!marker) return;
     switch (hightlight) {
       case HightlightTriggerReason.selected:
