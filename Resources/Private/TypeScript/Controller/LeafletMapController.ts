@@ -77,8 +77,9 @@ export default class LeafletMapController {
       }).addTo(this.map);
 
     }
-    this.map.on('click', function (ev: any) {
-      console.log(ev);
+    this.map.on('click', (e: any) => {
+      this.onLocationFound(e.latlng.lat, e.latlng.lng);
+      this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
     });
 
     this.map.on("locationfound", (e) => {
@@ -90,6 +91,7 @@ export default class LeafletMapController {
           if (marker != this.oneLocationMarker) {
             this.oneLocationMarker = markers[0];
             this.onLocationFound(e.latlng.lat, e.latlng.lng);
+            this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
             this.oneLocationMarker.on("click", (e) => this.markerClicked(e))
           }
         }
@@ -109,6 +111,7 @@ export default class LeafletMapController {
 
     this.searchedLocationMarker =
       L.marker([0, 0], {
+        draggable: true,
         icon: L.icon({
           iconRetinaUrl: settings.resourceUrl + 'marker-searched-icon-2x.png',
           iconUrl: settings.resourceUrl + 'marker-searched-icon.png',
@@ -120,10 +123,15 @@ export default class LeafletMapController {
           shadowSize: [41, 41]
         })
       }).on("click", (e: any) => { this.markerClicked(e); })
+      .on('dragend', (event) => {
+      var position = this.searchedLocationMarker.getLatLng();
+      this.onLocationFound(position.lat, position.lng);
+    });
 
   }
 
   protected markerClicked(e: any): void {
+    this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
     this.onLocationFound(e.latlng.lat, e.latlng.lng);
   }
 
@@ -140,8 +148,8 @@ export default class LeafletMapController {
   public setSearchedPosition(lat: number, lng: number): void {
     const pos = L.latLng(lat, lng);
     this.map.setView(pos);
-    this.searchedLocationMarker.setLatLng(pos);
-    this.searchedLocationMarker.addTo(this.map);
+    this.searchedLocationMarker.setLatLng(pos).addTo(this.map);
+
   }
 
   public removeSearchedPosition(): void {

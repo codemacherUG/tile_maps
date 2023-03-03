@@ -1,20 +1,19 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <div vocab="https://schema.org/" typeof="Organization" class="address-item" data-uid="{item.uid}">
-  <span property="name">{item.name}</span>
-  <input type="hidden" name="latitude" value="{item.latitude}" />
-  <input type="hidden" name="longitude" value="{item.longitude}" />
-  <div property="address" typeof="PostalAddress">
-    <span property="streetAddress">
-      {item.address}
-    </span>
-    <span property="addressLocality">{item.city}</span>,
-    <span property="postalCode">{item.zip}</span>
+  <div class="general">
+    <span property="name">{item.name}</span>
+    <input type="hidden" name="latitude" value="{item.latitude}" />
+    <input type="hidden" name="longitude" value="{item.longitude}" />
+    <div property="address" typeof="PostalAddress">
+      <span property="streetAddress">
+        {item.address}
+      </span>
+      <span property="addressLocality">{item.city}</span>,
+      <span property="postalCode">{item.zip}</span>
+    </div>
+    <span property="telephone">{item.phone}</span>
+    <f:link.email email="{item.email}" additionalAttributes="{property:'email'}" />
+    <f:link.external uri="{item.www}" target="_blank">{item.www}</f:link.external>
   </div>
-  <span property="telephone">{item.phone}</span>
-  <f:link.email email="{item.email}" additionalAttributes="{property:'email'}" />
-  <f:link.external uri="{item.www}" target="_blank">{item.www}</f:link.external>
-  <div class="distance-to-location">
-    <span><f:translate key="distance-to-location" /></span>
-    <span class="distance">-</span>
-  </div>
+  <div class="distance">-</div>
 </div>

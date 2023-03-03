@@ -7,6 +7,10 @@
   </div>
 </f:if>
 <div class="address-items">
+  <div class="header">
+    <div class="general"></div>
+    <div class="distance"><f:translate key="distance-to-location" /></div>
+  </div>
   <f:for each="{addresses}" as="address">
     <f:render partial="AddressItem" arguments="{item:address}" />
   </f:for>

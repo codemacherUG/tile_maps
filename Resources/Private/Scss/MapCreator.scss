@@ -21,4 +21,14 @@
   select {
     width: 400px;
   }
+  .address-items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    .header,
+    .address-item {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
