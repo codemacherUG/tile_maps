@@ -6,29 +6,65 @@
 
 .frame-type-tilemaps_map {
   .map {
-    min-height: 400px;
+    height: 600px;
     width: 100%;
   }
+  
   &.frame-layout-1677587808 {
     .leaflet-tile-pane {
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
     }
   }
+
   .select2 {
     display: block;
   }
+
   select {
     width: 400px;
   }
+
+  .tile-maps-container {
+    display: flex;
+    column-gap: 20px;
+    .left {
+      width: 100%;
+    }
+    .right {
+      width: 100%;
+    }
+  }
+
   .address-items {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    .header,
-    .address-item {
-      display: flex;
-      justify-content: space-between;
+    overflow: scroll;
+    height: 600px;
+
+  }
+
+  .header,
+  .address-item {
+    display: flex;
+    justify-content: space-between;
+    &:hover,
+    &.hover {
+      background-color: lightgreen;
+    }
+
+    
+    span {
+      display: block;
+      &[property="name"] {
+        font-weight: bold;
+      }
+    }
+    .city {
+      span {
+        display: inline;
+      }
     }
   }
 }

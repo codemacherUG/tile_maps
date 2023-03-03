@@ -2,23 +2,30 @@ import AddressItem from '../Data/AddressItem';
 import L from "leaflet";
 import "leaflet.markercluster";
 import "leaflet.locatecontrol";
-import { onLocationFoundCallBack } from '../Types';
+import { onLocationUpdateCallBack, onAddressItemHighlightCallBack, HightlightTriggerReason } from '../Types';
+import AddressMarker from '../Leaflet/AddressMarker';
 
 
 export default class LeafletMapController {
 
-  private markers: L.MarkerClusterGroup;
+  private markerCluster: L.MarkerClusterGroup;
   private locationMarkerLayer: L.LayerGroup;
   private oneLocationMarker: L.Layer;
   private defaultMarkerIcon: L.Icon;
+  private hightlightMarkerIcon: L.Icon;
   private searchedLocationMarker: L.Marker;
   private map: L.Map;
-  private onLocationFound: onLocationFoundCallBack;
+  private onLocationUpdate: onLocationUpdateCallBack;
+  private onAddressItemSelected: onAddressItemHighlightCallBack;
+ 
+  private markerMap = new Map<AddressItem, L.Marker>();
+  public onRefPositionMoved: onLocationUpdateCallBack;
 
+  public constructor(element: HTMLElement, onLocationFound: onLocationUpdateCallBack, onRefPositionMoved: onLocationUpdateCallBack, onAddressItemSelected: onAddressItemHighlightCallBack) {
 
-  public constructor(element: HTMLElement, onLocationFound: onLocationFoundCallBack) {
-
-    this.onLocationFound = onLocationFound;
+    this.onLocationUpdate = onLocationFound;
+    this.onAddressItemSelected = onAddressItemSelected;
+    this.onRefPositionMoved = onRefPositionMoved;
     const settings = JSON.parse(element.dataset.settings ?? "");
     const endpoint = element.dataset.endpoint;
 
@@ -47,8 +54,12 @@ export default class LeafletMapController {
 
     }).addTo(this.map);
 
-    this.markers = L.markerClusterGroup();
-    this.map.addLayer(this.markers);
+    this.markerCluster = L.markerClusterGroup({
+      spiderfyOnMaxZoom: true,
+      showCoverageOnHover: true,
+      zoomToBoundsOnClick: true,
+    });
+    this.map.addLayer(this.markerCluster);
     this.locationMarkerLayer = new L.LayerGroup();
 
     if (settings.setMaxBounds > 0) {
@@ -78,7 +89,7 @@ export default class LeafletMapController {
 
     }
     this.map.on('click', (e: any) => {
-      this.onLocationFound(e.latlng.lat, e.latlng.lng);
+      this.onLocationUpdate(e.latlng.lat, e.latlng.lng);
       this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
     });
 
@@ -90,7 +101,7 @@ export default class LeafletMapController {
           const marker = markers[0];
           if (marker != this.oneLocationMarker) {
             this.oneLocationMarker = markers[0];
-            this.onLocationFound(e.latlng.lat, e.latlng.lng);
+            this.onLocationUpdate(e.latlng.lat, e.latlng.lng);
             this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
             this.oneLocationMarker.on("click", (e) => this.markerClicked(e))
           }
@@ -109,13 +120,24 @@ export default class LeafletMapController {
       shadowSize: [41, 41]
     });
 
+    this.hightlightMarkerIcon = L.icon({
+      iconRetinaUrl: settings.resourceUrl + 'marker-highlight-icon-2x.png',
+      iconUrl: settings.resourceUrl + 'marker-highlight-icon.png',
+      shadowUrl: settings.resourceUrl + 'marker-highlight-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    });
+
     this.searchedLocationMarker =
       L.marker([0, 0], {
         draggable: true,
         icon: L.icon({
           iconRetinaUrl: settings.resourceUrl + 'marker-searched-icon-2x.png',
           iconUrl: settings.resourceUrl + 'marker-searched-icon.png',
-          shadowUrl: settings.resourceUrl + 'marker-shadow.png',
+          shadowUrl: settings.resourceUrl + 'marker-searched-hadow.png',
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
@@ -123,16 +145,16 @@ export default class LeafletMapController {
           shadowSize: [41, 41]
         })
       }).on("click", (e: any) => { this.markerClicked(e); })
-      .on('dragend', (event) => {
-      var position = this.searchedLocationMarker.getLatLng();
-      this.onLocationFound(position.lat, position.lng);
-    });
+        .on('dragend', (event) => {
+          var position = this.searchedLocationMarker.getLatLng();
+          this.onRefPositionMoved(position.lat, position.lng)
+        });
 
   }
 
   protected markerClicked(e: any): void {
     this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
-    this.onLocationFound(e.latlng.lat, e.latlng.lng);
+    this.onLocationUpdate(e.latlng.lat, e.latlng.lng);
   }
 
 
@@ -140,7 +162,21 @@ export default class LeafletMapController {
     for (let i = 0; i < addressItems.length; i++) {
       let item = addressItems[i];
       if (item.getLatitude() != null && item.getLongitude() != null) {
-        L.marker([item.getLatitude() ?? 0, item.getLongitude() ?? 0], { icon: this.defaultMarkerIcon }).addTo(this.markers);
+        const marker = new AddressMarker([item.getLatitude() ?? 0, item.getLongitude() ?? 0], {
+          icon: this.defaultMarkerIcon,
+          addressItem: item
+        });
+        marker.addTo(this.markerCluster)
+          .on("click", (e: any) => {
+            this.onAddressItemSelected(HightlightTriggerReason.selected, e.sourceTarget.options.addressItem);
+          })
+          .on("mouseover", (e: any) => {
+            this.onAddressItemSelected(HightlightTriggerReason.mouseover, e.sourceTarget.options.addressItem);
+          })
+          .on("mouseout", (e: any) => {
+            this.onAddressItemSelected(HightlightTriggerReason.mouseout, e.sourceTarget.options.addressItem);
+          })
+        this.markerMap.set(item, marker);
       }
     }
   }
@@ -154,6 +190,33 @@ export default class LeafletMapController {
 
   public removeSearchedPosition(): void {
     this.searchedLocationMarker.remove();
+  }
+
+  public select(hightlight: HightlightTriggerReason, addressItem: AddressItem): void {
+
+    const marker = this.markerMap.get(addressItem);
+    
+    if (!marker) return;
+    switch (hightlight) {
+      case HightlightTriggerReason.selected:
+        var latLngs = [marker.getLatLng()];
+        var markerBounds = L.latLngBounds(latLngs);
+        this.map.fitBounds(markerBounds, {
+          maxZoom: 14
+        });
+        break;
+      case HightlightTriggerReason.mouseover:
+        this.markerCluster.removeLayer(marker);
+        this.map.addLayer(marker);
+        marker.setIcon(this.hightlightMarkerIcon);
+        break;
+      case HightlightTriggerReason.mouseout:
+        this.map.removeLayer(marker);
+        this.markerCluster.addLayer(marker);
+        marker.setIcon(this.defaultMarkerIcon);
+        break;
+
+    }
   }
 
 }

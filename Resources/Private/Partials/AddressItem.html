@@ -8,12 +8,18 @@
       <span property="streetAddress">
         {item.address}
       </span>
-      <span property="addressLocality">{item.city}</span>,
-      <span property="postalCode">{item.zip}</span>
+      <div class="city">
+        <span property="postalCode">{item.zip}</span> <span property="addressLocality">{item.city}</span>
+      </div>
     </div>
     <span property="telephone">{item.phone}</span>
-    <f:link.email email="{item.email}" additionalAttributes="{property:'email'}" />
-    <f:link.external uri="{item.www}" target="_blank">{item.www}</f:link.external>
+    <span>
+      <f:link.email email="{item.email}" additionalAttributes="{property:'email'}" />
+    </span>
+    <span>
+      <f:link.external uri="{item.www}" target="_blank" additionalAttributes="{property:'url'}">{item.www}
+      </f:link.external>
+    </span>
   </div>
   <div class="distance">-</div>
 </div>
