@@ -175,9 +175,11 @@ export default class LeafletMapController {
             this.onAddressItemSelected(HightlightTriggerReason.selected, e.sourceTarget.options.addressItem);
           })
           .on("mouseover", (e: any) => {
+            marker.setIcon(this.hightlightMarkerIcon);
             this.onAddressItemSelected(HightlightTriggerReason.mouseover, e.sourceTarget.options.addressItem);
           })
           .on("mouseout", (e: any) => {
+            marker.setIcon(this.defaultMarkerIcon);
             this.onAddressItemSelected(HightlightTriggerReason.mouseout, e.sourceTarget.options.addressItem);
           })
         this.markerMap.set(item, marker);
