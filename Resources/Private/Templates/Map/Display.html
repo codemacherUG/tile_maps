@@ -3,13 +3,13 @@
   <div class="left">
     <div class="map" data-endpoint="{f:uri.page(pageUid:settings.tileEndpoint)}"
       data-settings="{f:format.json(value: settings)}"></div>
+  </div>
+  <div class="right {f:if(condition:settings.hideMarkerList,then:'hidden')} ">
     <f:if condition="{settings.enableGeoLocationSearch}">
       <div class="geo-search" data-endpoint="{f:uri.page(pageUid:settings.nominatimEndpoint)}">
         <select class="geo-search" name="geo-search-select"></select>
       </div>
-    </f:if>
-  </div>
-  <div class="right {f:if(condition:settings.hideMarkerList,then:'hidden')} ">
+    </f:if>    
     <div class="header">
       <div class="general"></div>
       <f:if condition="{settings.displayDistanceToLocation}">
