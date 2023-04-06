@@ -12,13 +12,15 @@
   <div class="right {f:if(condition:settings.hideMarkerList,then:'hidden')} ">
     <div class="header">
       <div class="general"></div>
-      <div class="distance">
-        <f:translate key="distance-to-location" />
-      </div>
+      <f:if condition="{settings.displayDistanceToLocation}">
+        <div class="distance">
+          <f:translate key="distance-to-location" />
+        </div>
+      </f:if>
     </div>
     <div class="address-items">
       <f:for each="{addresses}" as="address">
-        <f:render partial="AddressItem" arguments="{item:address}" />
+        <f:render partial="AddressItem" arguments="{item:address,settings:settings}" />
       </f:for>
     </div>
   </div>

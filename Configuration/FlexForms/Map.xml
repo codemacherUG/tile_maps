@@ -120,7 +120,41 @@
                 </items>
               </config>
             </TCEforms>
-          </settings.hideMarkerList>          
+          </settings.hideMarkerList>       
+          <settings.enableDistanceMarker>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.enabledistancemarker</label>
+              <config>
+                <type>check</type>
+                <default>1</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.enableDistanceMarker>                 
+          <settings.displayDistanceToLocation>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.displaydistancetolocation</label>
+              <config>
+                <type>check</type>
+                <default>1</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.displayDistanceToLocation>            
         </el>
       </ROOT>
     </sDEF>

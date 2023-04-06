@@ -54,6 +54,12 @@
 			<trans-unit id="content_element.map.settings.enablemarkerpopup">
 				<source>Enable marker popup on click</source>
 			</trans-unit>		
+			<trans-unit id="content_element.map.settings.enabledistancemarker">
+				<source>Show position marker when the user clicks on the map</source>
+			</trans-unit>	
+			<trans-unit id="content_element.map.settings.displaydistancetolocation">
+				<source>Show distances to Locations</source>
+			</trans-unit>	
 			
     </body>
   </file>

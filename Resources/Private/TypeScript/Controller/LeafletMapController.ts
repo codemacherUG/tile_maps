@@ -15,7 +15,7 @@ export default class LeafletMapController {
   private hightlightMarkerIcon: L.Icon;
   private searchedLocationMarker: L.Marker;
   private map: L.Map;
-  private settings:any;
+  private settings: any;
   private markerMap = new Map<AddressItem, L.Marker>();
 
   public onRefPositionMoved: onLocationUpdateCallBack;
@@ -29,7 +29,6 @@ export default class LeafletMapController {
     this.onRefPositionMoved = onRefPositionMoved;
     this.settings = JSON.parse(element.dataset.settings ?? "");
     const endpoint = element.dataset.endpoint;
-
 
     const bbox = this.settings.bbox.split(',').map(function (item: string) {
       return parseFloat(item);
@@ -89,10 +88,12 @@ export default class LeafletMapController {
       }).addTo(this.map);
 
     }
-    this.map.on('click', (e: any) => {
-      this.onLocationUpdate(e.latlng.lat, e.latlng.lng);
-      this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
-    });
+    if (this.settings.enableDistanceMarker > 0) {
+      this.map.on('click', (e: any) => {
+        this.onLocationUpdate(e.latlng.lat, e.latlng.lng);
+        this.searchedLocationMarker.setLatLng(L.latLng(e.latlng.lat, e.latlng.lng)).addTo(this.map);
+      });
+    }
 
     this.map.on("locationfound", (e) => {
       // leaflet.locatecontrol add the marker also in this event => queue up
