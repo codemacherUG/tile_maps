@@ -1,27 +1,40 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <section class="tile-maps-container">
-  <div class="left">
+  <div class="map-wrapper">
     <div class="map" data-endpoint="{f:uri.page(pageUid:settings.tileEndpoint)}"
       data-settings="{f:format.json(value: settings)}"></div>
   </div>
-  <div class="right {f:if(condition:settings.hideMarkerList,then:'hidden')} ">
+  <div class="content-wrapper {f:if(condition:settings.hideMarkerList,then:'hidden')} ">
     <f:if condition="{settings.enableGeoLocationSearch}">
       <div class="geo-search" data-endpoint="{f:uri.page(pageUid:settings.nominatimEndpoint)}">
-        <select class="geo-search" name="geo-search-select"></select>
+        <select class="geo-search" name="geo-search-select" data-placeholder="{settings.selectPlaceholder}"></select>
       </div>
-    </f:if>    
-    <div class="header">
-      <div class="general"></div>
-      <f:if condition="{settings.displayDistanceToLocation}">
-        <div class="distance">
-          <f:translate key="distance-to-location" />
-        </div>
-      </f:if>
+    </f:if>
+
+    <div class="filter">
+      <div class="categories">
+        <span class="active">Alle</span>
+        <span>Endkunden</span>
+        <span>Business</span>
+      </div>
     </div>
+
     <div class="address-items">
-      <f:for each="{addresses}" as="address">
-        <f:render partial="AddressItem" arguments="{item:address,settings:settings}" />
-      </f:for>
+      <div class="address-items-header">
+        <div class="numof"><span class="number">3</span> <f:translate key="numof.label" /></div>
+        <f:if condition="{settings.displayDistanceToLocation}">
+          <div class="distance">
+            <f:translate key="distance-to-location" />
+          </div>
+        </f:if>
+      </div>
+      <ul>
+        <f:for each="{addresses}" as="address">
+          <li>
+            <f:render partial="AddressItem" arguments="{item:address,settings:settings}" />
+          </li>
+        </f:for>
+      </ul>
     </div>
   </div>
 </section>

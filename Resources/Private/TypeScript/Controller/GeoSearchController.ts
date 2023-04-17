@@ -1,22 +1,23 @@
 
 import $ from "jquery";
 import "select2";
-import {onLocationUpdateCallBack} from '../Types';
+import { onLocationUpdateCallBack } from '../Types';
 
 export default class GeoSearchController {
 
-  private geosearchselect : JQuery;
+  private geosearchselect: JQuery;
 
   public constructor(element: HTMLElement, onLocationFound: onLocationUpdateCallBack) {
     this.geosearchselect = $("[name=geo-search-select]", element);
     const endpoint = element.dataset.endpoint;
+    const placeholder_text = this.geosearchselect.data('placeholder');
 
     this.geosearchselect.select2({
       minimumInputLength: 3,
       allowClear: true,
-      placeholder: '-',
+      placeholder: placeholder_text,
       ajax: {
-        delay: 1000, 
+        delay: 1000,
         url: endpoint,
         dataType: 'json',
         data: function (params) {
@@ -50,14 +51,14 @@ export default class GeoSearchController {
     });
     $(document).on('select2:open', () => {
       const result = document.querySelector('.select2-search__field') as HTMLElement;
-      if(result) result.focus();
+      if (result) result.focus();
     });
     this.geosearchselect.on('select2:select', function (e) {
       var data = e.params.data as any;
-      onLocationFound(data.item.lat,data.item.lon);
+      onLocationFound(data.item.lat, data.item.lon);
     });
     this.geosearchselect.on('select2:clear', function (e) {
-      onLocationFound(null,null);
+      onLocationFound(null, null);
     });
   }
 

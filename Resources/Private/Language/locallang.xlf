@@ -6,6 +6,9 @@
 			<trans-unit id="distance-to-location">
 				<source>Distance to Location</source>
 			</trans-unit>
+			<trans-unit id="numof.label">
+				<source>Results</source>
+			</trans-unit>
       <trans-unit id="leaflet.locatecontrol.title">
 				<source>Show me where I am</source>
 			</trans-unit>
