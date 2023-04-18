@@ -1,8 +1,9 @@
-.frame-type-tilemaps_map {
+:root {
   --ext_tm--height                                  : 600px;
   --ext_tm--width                                   : 100%;
   --ext_tm--font-size                               : 20px;
   --ext_tm--line-height                             : 1.1;
+  --ext_tm--color-primary                           : #000;
   --ext_tm--content--padding-left                   : 20px;
   --ext_tm--content--padding-right                  : 20px;
   --ext_tm--content--color-background-rgb           : 255, 255, 255;

@@ -1,5 +1,24 @@
 // Theming
 .select2-container--default {
+  &.select2-container--open {
+    font-size: var(--ext_tm--geosearch--suggestions--font-size);
+    color    : var(--ext_tm--geosearch--suggestions--color);
+
+    .select2-search--dropdown {
+      background-color: var(--ext_tm--geosearch--suggestions--color-background);
+
+      .select2-search__field {
+        font-size: var(--ext_tm--geosearch--suggestions--font-size);
+        color    : var(--ext_tm--geosearch--suggestions--color);
+      }
+    }
+
+    .select2-results {
+      color      : var(--ext_tm--color-primary);
+      font-weight: normal;
+    }
+  }
+
   .select2-selection--single {
     background-color: var(--ext_tm--geosearch--color-background);
     border          : none;
