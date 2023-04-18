@@ -3,32 +3,9 @@
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 @import "~leaflet.locatecontrol/src/L.Control.Locate.scss";
 @import "~select2/dist/css/select2.css";
+@import "variables";
 
 .frame-type-tilemaps_map {
-  --ext_tm--height                                  : 600px;
-  --ext_tm--width                                   : 100%;
-  --ext_tm--font-size                               : 20px;
-  --ext_tm--line-height                             : 1.1;
-  --ext_tm--content--padding-left                   : 20px;
-  --ext_tm--content--padding-right                  : 20px;
-  --ext_tm--geosearch--font-size                    : 20px;
-  --ext_tm--geosearch--width                        : 100%;
-  --ext_tm--geosearch--padding-top                  : 20px;
-  --ext_tm--geosearch--padding-bottom               : 20px;
-  --ext_tm--geosearch--color-background             : #00233e;
-  --ext_tm--geosearch--color                        : #fff;
-  --ext_tm--geosearch--suggestions--color           : #444;
-  --ext_tm--geosearch--suggestions--color-background: #fff;
-  --ext_tm--geosearch--suggestions--font-size       : 20px;
-  --ext_tm--address-items-header--font-size         : 12px;
-  --ext_tm--address-items-header--color             : #6c6b69;
-  --ext_tm--address-items-header--color-background  : #fff;
-  --ext_tm--filter--font-size                       : 12px;
-  --ext_tm--filter--color                           : #6c6b69;
-  --ext_tm--filter--color-background                : #fff;
-  --ext_tm--filter--color-active                    : #00233e;
-  --ext_tm--filter--color-hover                     : black;
-
 
   font-size  : var(--ext_tm--font-size);
   line-height: var(--ext_tm--line-height);
@@ -67,9 +44,13 @@
     }
 
     .content-wrapper {
-      width   : 100%;
-      height  : 100%;
-      overflow: hidden;
+      width           : 100%;
+      height          : 100%;
+      overflow        : hidden;
+      position        : relative;
+      display         : flex;
+      flex-direction  : column;
+      background-color: rgb(var(--ext_tm--content--color-background-rgb));
 
       .geo-search {
         width           : var(--ext_tm--geosearch--width);
@@ -79,6 +60,8 @@
         padding-right   : var(--ext_tm--content--padding-right);
         color           : var(--ext_tm--geosearch--color);
         background-color: var(--ext_tm--geosearch--color-background);
+        flex-grow       : 0;
+        flex-shrink     : 0;
       }
 
       .filter {
@@ -90,6 +73,8 @@
         padding-right   : var(--ext_tm--content--padding-right);
         padding-top     : 1em;
         padding-bottom  : 0;
+        flex-grow       : 0;
+        flex-shrink     : 0;
 
         .categories {
           display       : flex;
@@ -119,8 +104,21 @@
       }
 
       .address-items {
-        padding-left : var(--ext_tm--content--padding-left);
-        padding-right: var(--ext_tm--content--padding-right);
+        padding-left: var(--ext_tm--content--padding-left);
+        flex-grow   : 1;
+        flex-shrink : 1;
+
+        &:after {
+          content   : ' ';
+          display   : block;
+          background: linear-gradient(to top, rgba(var(--ext_tm--content--color-background-rgb), 1) 0%, rgba(var(--ext_tm--content--color-background-rgb), 0) 100%);
+          height    : 3em;
+          position  : absolute;
+          left      : 0;
+          bottom    : 0;
+          width     : 100%;
+        }
+
 
         .address-items-header {
           display         : flex;
@@ -129,9 +127,32 @@
           background-color: var(--ext_tm--address-items-header--color-background);
           font-size       : var(--ext_tm--address-items-header--font-size);
           padding         : 1em 0;
+          padding-right   : var(--ext_tm--content--padding-right);
+
         }
 
-        .address-item {}
+        ul {
+          list-style     : none;
+          padding        : 0;
+          margin         : 0;
+          height         : 100%;
+          width          : auto;
+          display        : block;
+          overflow-y     : scroll;
+          padding-right  : calc(var(--ext_tm--content--padding-right) / 2);
+          margin-right   : calc(var(--ext_tm--content--padding-right) / 2);
+          scrollbar-width: thin;
+          padding-bottom : 5em;
+
+
+          li {
+            padding: 0 0 1em 0;
+          }
+        }
+
+        .address-item {
+          font-size: var(--ext_tm--address-items--font-size);
+        }
       }
     }
 
@@ -174,4 +195,8 @@
       }
     }
   }
+
+  
+
 }
+@import "select2";

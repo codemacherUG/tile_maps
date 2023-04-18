@@ -38,6 +38,9 @@
 			<trans-unit id="content_element.map.settings.tab.general">
 				<source>General</source>
 			</trans-unit>
+			<trans-unit id="content_element.map.settings.tab.filter">
+				<source>Filter</source>
+			</trans-unit>
 
 			<trans-unit id="content_element.map.settings.tab.geolocation">
 				<source>Location Search</source>
