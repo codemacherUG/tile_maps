@@ -26,6 +26,8 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
 
 /*! ./Controller/AddressListController */
 
+/*! ./Controller/FilterController */
+
 /*! ./Controller/GeoSearchController */
 
 /*! ./Controller/LeafletMapController */
@@ -75,6 +77,10 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
 /*!********************************************************************!*\
   !*** ./node_modules/leaflet.locatecontrol/src/L.Control.Locate.js ***!
   \********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ../Resources/Private/TypeScript/Controller/FilterController.ts ***!
+  \**********************************************************************/
 
 /*!*************************************************************************!*\
   !*** ../Resources/Private/TypeScript/Controller/GeoSearchController.ts ***!

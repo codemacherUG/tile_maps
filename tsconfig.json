@@ -6,7 +6,7 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "module": "es6",
-    "target": "es6",
+    "target": "ES2016",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",

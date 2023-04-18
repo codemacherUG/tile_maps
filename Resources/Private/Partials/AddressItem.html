@@ -10,8 +10,8 @@
     </f:else>
   </f:if>
 </f:for>
-<div vocab="https://schema.org/" typeof="Organization" class="address-item" data-uid="{item.uid}"
-  data-categories="{categoriesStr}">
+<div vocab="https://schema.org/" typeof="Organization" class="address-item hidden" data-uid="{item.uid}"
+  data-category="{categoriesStr}">
   <div class="general">
     <span property="name">{item.name}</span>
     <input type="hidden" name="latitude" value="{item.latitude}" />

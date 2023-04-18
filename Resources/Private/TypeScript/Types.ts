@@ -6,5 +6,7 @@ export enum HightlightTriggerReason {
   mouseout
 }
 
+export type FilterMap = Map<string, string[]>;
+
 export type onLocationUpdateCallBack = (lat: number | null, lng: number | null) => void;
 export type onAddressItemHighlightCallBack = (type : HightlightTriggerReason,item: AddressItem) => void;

@@ -11,16 +11,8 @@
       </div>
     </f:if>
 
-
     <div class="filter">
-      <f:if condition="{filterCategories -> f:count()} > 0">
-        <div class="categories">
-          <span class="active">Alle</span>
-          <f:for each="{filterCategories}" as="category">
-            <span data-uid="{category.uid}">{category.title}</span>
-          </f:for>
-        </div>
-      </f:if>
+      <f:render partial="Filter" arguments="{_all}" />
     </div>
 
     <div class="address-items">

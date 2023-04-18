@@ -50,5 +50,16 @@ export default class AddressItem {
     return parseFloat(this.element.dataset.distance ?? "");
   }
 
+  public setVisibility(visible: boolean): void {
+    if (visible) {
+      this.element.classList.remove("hidden");
+    } else {
+      this.element.classList.add("hidden");
+    }
+  }
+
+  public getVisibility(): boolean {
+    return !this.element.classList.contains("hidden");
+  }
 }
 

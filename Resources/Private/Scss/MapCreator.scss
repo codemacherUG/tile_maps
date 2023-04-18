@@ -68,7 +68,7 @@
         font-size       : var(--ext_tm--filter--font-size);
         line-height     : 1.5;
         color           : var(--ext_tm--filter--color);
-        background-color: var(--ext_tm--filter--color-background);
+        background-color: transparent;
         padding-left    : var(--ext_tm--content--padding-left);
         padding-right   : var(--ext_tm--content--padding-right);
         padding-top     : 1em;
@@ -88,15 +88,18 @@
             cursor       : pointer;
             border-bottom: 2px transparent solid;
 
-            &.active {
-              color          : var(--ext_tm--filter--color-active);
-              text-decoration: none;
-              border-bottom  : 2px var(--ext_tm--filter--color-active) solid;
-            }
-
             &:hover {
               color: var(--ext_tm--filter--color-hover);
             }
+          }
+
+          input {
+            display: none;
+          }
+          input[type="radio"]:checked + span {
+            color          : var(--ext_tm--filter--color-active);
+            text-decoration: none;
+            border-bottom  : 2px var(--ext_tm--filter--color-active) solid;
           }
 
 
@@ -112,7 +115,7 @@
           content   : ' ';
           display   : block;
           background: linear-gradient(to top, rgba(var(--ext_tm--content--color-background-rgb), 1) 0%, rgba(var(--ext_tm--content--color-background-rgb), 0) 100%);
-          height    : 3em;
+          height    : var(--ext_tm--address-items--dimmer-height);
           position  : absolute;
           left      : 0;
           bottom    : 0;

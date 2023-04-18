@@ -4,18 +4,44 @@
     font-size: var(--ext_tm--geosearch--suggestions--font-size);
     color    : var(--ext_tm--geosearch--suggestions--color);
 
+    .select2-dropdown {
+      border       : none;
+      border-radius: 0;
+    }
+
+    .select2-selection__arrow {
+      b {
+        // Rotation um 180 grad um z
+
+        transform: rotateZ(180deg);
+      }
+    }
+
     .select2-search--dropdown {
       background-color: var(--ext_tm--geosearch--suggestions--color-background);
+      padding         : 0;
 
       .select2-search__field {
-        font-size: var(--ext_tm--geosearch--suggestions--font-size);
-        color    : var(--ext_tm--geosearch--suggestions--color);
+        font-size  : var(--ext_tm--geosearch--suggestions--font-size);
+        font-weight: normal;
+        color      : var(--ext_tm--geosearch--suggestions--color);
+        border     : none;
+        outline    : none;
+
+        &:active,
+        &:focus,
+        &:focus-visible {
+          border : none;
+          outline: none;
+        }
+
       }
     }
 
     .select2-results {
       color      : var(--ext_tm--color-primary);
       font-weight: normal;
+      border-top : 1px solid var(--ext_tm--filter--color);
     }
   }
 
@@ -57,20 +83,12 @@
       width: 20px;
 
       b {
-        border-color: #888 transparent transparent transparent;
-        border-style: solid;
-        border-width: 5px 4px 0 4px;
-
-        height: 0;
-        left  : 50%;
-
-        margin-left: -4px;
-        margin-top : -2px;
-
-        position: absolute;
-
-        top  : 50%;
-        width: 0;
+        border           : none;
+        background-image : var(--ext_tm--select2-arrow);
+        background-size  : contain;
+        background-repeat: no-repeat;
+        width            : 22px;
+        height           : 22px;
       }
     }
   }

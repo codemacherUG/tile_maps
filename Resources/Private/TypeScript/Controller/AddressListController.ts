@@ -6,10 +6,12 @@ export default class AddressListController {
 
   public items: Array<AddressItem>;
   private onAddressItemSelected: onAddressItemHighlightCallBack;
+  private counterElement: HTMLElement;
 
 
   public constructor(parentContainer: HTMLElement,) {
     this.items = new Array<AddressItem>();
+    this.counterElement = parentContainer.querySelector('.address-items-header .numof .number') as HTMLElement;
     const elements = parentContainer.querySelectorAll('.address-item');
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i] as HTMLElement;
@@ -71,7 +73,7 @@ export default class AddressListController {
       let item = this.items[0];
       let parentNode = item.element.parentElement;
       if (parentNode) {
-        parentNode.scrollTo(0,0);
+        parentNode.scrollTo(0, 0);
       }
     }
 
@@ -91,6 +93,21 @@ export default class AddressListController {
         break;
 
     }
+  }
+
+  public refreshCounter(): void {
+    this.counterElement.innerHTML = this.countVisible().toString();
+  }
+
+  protected countVisible(): number {
+    let count = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      let item = this.items[i];
+      if (item.getVisibility()) {
+        count++;
+      }
+    }
+    return count;
   }
 
 
