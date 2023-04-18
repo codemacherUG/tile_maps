@@ -10,6 +10,9 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+
+use Codemacher\TileMaps\Domain\Repository\CategoryRepository;
+
 class MapController extends ActionController
 {
 
@@ -27,7 +30,6 @@ class MapController extends ActionController
     $pageRenderer =  GeneralUtility::makeInstance(PageRenderer::class);
     $pageRenderer->addInlineLanguageLabelFile('EXT:tile_maps/Resources/Private/Language/locallang.xlf');
 
-
     $contentObj = $this->configurationManager->getContentObject();
     $extSettings = $this->settings;
 
@@ -39,6 +41,18 @@ class MapController extends ActionController
     $extSettings['grayscale'] = $contentObj->data['layout']  == '1677587808';
     $extSettings['resourceUrl'] = PathUtility::getPublicResourceWebPath($this->settings['iconPath']);
 
+    // categories by comma separated list
+    $categoryIdList = $this->settings["categories"];
+
+    if ($categoryIdList) {
+        $categoryIdList = GeneralUtility::intExplode(',', (string)$categoryIdList, true);
+        /** @var CategoryRepository $categoryRepository */
+        $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
+        $categories = $categoryRepository->findByUids($categoryIdList);
+        $this->view->assign("filterCategories",$categories);
+    }
+   
+    
     $this->view->assign("addresses",$addresses);
     $this->view->assign("data", $contentObj->data);
     $this->view->assign("settings",$extSettings);
