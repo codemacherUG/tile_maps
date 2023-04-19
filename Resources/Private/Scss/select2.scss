@@ -1,8 +1,9 @@
 // Theming
 .select2-container--default {
+
   &.select2-container--open {
-    font-size: var(--ext_tm--geosearch--suggestions--font-size);
-    color    : var(--ext_tm--geosearch--suggestions--color);
+    font-size: var(--tile_maps--geosearch--suggestions--font-size);
+    color    : var(--tile_maps--geosearch--suggestions--color);
 
     .select2-dropdown {
       border       : none;
@@ -18,13 +19,13 @@
     }
 
     .select2-search--dropdown {
-      background-color: var(--ext_tm--geosearch--suggestions--color-background);
+      background-color: var(--tile_maps--geosearch--suggestions--color-background);
       padding         : 0;
 
       .select2-search__field {
-        font-size  : var(--ext_tm--geosearch--suggestions--font-size);
+        font-size  : var(--tile_maps--geosearch--suggestions--font-size);
         font-weight: normal;
-        color      : var(--ext_tm--geosearch--suggestions--color);
+        color      : var(--tile_maps--geosearch--suggestions--color);
         border     : none;
         outline    : none;
 
@@ -39,21 +40,21 @@
     }
 
     .select2-results {
-      color      : var(--ext_tm--color-primary);
+      color      : var(--tile_maps--color-primary);
       font-weight: normal;
-      border-top : 1px solid var(--ext_tm--filter--color);
+      border-top : 1px solid var(--tile_maps--filter--color);
     }
   }
 
   .select2-selection--single {
-    background-color: var(--ext_tm--geosearch--color-background);
+    background-color: var(--tile_maps--geosearch--color-background);
     border          : none;
     border-bottom   : 1px solid #aaa;
     border-radius   : 0;
     height          : unset;
 
     .select2-selection__rendered {
-      color      : var(--ext_tm--geosearch--color);
+      color      : var(--tile_maps--geosearch--color);
       line-height: 2;
     }
 
@@ -67,9 +68,13 @@
     }
 
     .select2-selection__placeholder {
-      color         : var(--ext_tm--geosearch--color);
+      color         : var(--tile_maps--geosearch--color);
       text-transform: uppercase;
-      font-size     : var(--ext_tm--geosearch--font-size);
+      font-size     : var(--tile_maps--geosearch--font-size);
+
+      &:hover {
+        color: var(--tile_maps--geosearch--color-hover);
+      }
     }
 
     .select2-selection__arrow {
@@ -84,7 +89,7 @@
 
       b {
         border           : none;
-        background-image : var(--ext_tm--select2-arrow);
+        background-image : var(--tile_maps--select2-arrow);
         background-size  : contain;
         background-repeat: no-repeat;
         width            : 22px;

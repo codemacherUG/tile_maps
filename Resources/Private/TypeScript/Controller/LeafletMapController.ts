@@ -44,7 +44,10 @@ export default class LeafletMapController {
     this.map = L.map(element, {
       scrollWheelZoom: false,
       minZoom: parseInt(this.settings.minZoom ?? "0"),
-      maxZoom: parseInt(this.settings.maxZoom ?? "18")
+      maxZoom: parseInt(this.settings.maxZoom ?? "18"),
+      dragging: !L.Browser.mobile,
+      touchZoom: true,
+      tap: !L.Browser.mobile
     });
 
     const endPointUrl = endpoint + '/?provider=osm&z={z}&x={x}&y={y}&s={s}';
