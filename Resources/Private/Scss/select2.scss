@@ -1,101 +1,104 @@
-// Theming
-.select2-container--default {
+.tile-maps-container {
 
-  &.select2-container--open {
-    font-size: var(--tile_maps--geosearch--suggestions--font-size);
-    color    : var(--tile_maps--geosearch--suggestions--color);
+  // Theming
+  .select2-container--default {
 
-    .select2-dropdown {
-      border       : none;
-      border-radius: 0;
-    }
+    &.select2-container--open {
+      font-size: var(--tile_maps--geosearch--suggestions--font-size);
+      color    : var(--tile_maps--geosearch--suggestions--color);
 
-    .select2-selection__arrow {
-      b {
-        // Rotation um 180 grad um z
-
-        transform: rotateZ(180deg);
+      .select2-dropdown {
+        border       : none;
+        border-radius: 0;
       }
-    }
 
-    .select2-search--dropdown {
-      background-color: var(--tile_maps--geosearch--suggestions--color-background);
-      padding         : 0;
+      .select2-selection__arrow {
+        b {
+          // Rotation um 180 grad um z
 
-      .select2-search__field {
-        font-size  : var(--tile_maps--geosearch--suggestions--font-size);
-        font-weight: normal;
-        color      : var(--tile_maps--geosearch--suggestions--color);
-        border     : none;
-        outline    : none;
-
-        &:active,
-        &:focus,
-        &:focus-visible {
-          border : none;
-          outline: none;
+          transform: rotateZ(180deg);
         }
+      }
 
+      .select2-search--dropdown {
+        background-color: var(--tile_maps--geosearch--suggestions--color-background);
+        padding         : 0;
+
+        .select2-search__field {
+          font-size  : var(--tile_maps--geosearch--suggestions--font-size);
+          font-weight: normal;
+          color      : var(--tile_maps--geosearch--suggestions--color);
+          border     : none;
+          outline    : none;
+
+          &:active,
+          &:focus,
+          &:focus-visible {
+            border : none;
+            outline: none;
+          }
+
+        }
+      }
+
+      .select2-results {
+        color      : var(--tile_maps--color-primary);
+        font-weight: normal;
+        border-top : 1px solid var(--tile_maps--filter--color);
       }
     }
 
-    .select2-results {
-      color      : var(--tile_maps--color-primary);
-      font-weight: normal;
-      border-top : 1px solid var(--tile_maps--filter--color);
+    .select2-selection--single {
+      background-color: var(--tile_maps--geosearch--color-background);
+      border          : none;
+      border-bottom   : 1px solid #aaa;
+      border-radius   : 0;
+      height          : unset;
+
+      .select2-selection__rendered {
+        color      : var(--tile_maps--geosearch--color);
+        line-height: 2;
+      }
+
+      .select2-selection__clear {
+        cursor       : pointer;
+        float        : right;
+        font-weight  : bold;
+        height       : 26px;
+        margin-right : 20px;
+        padding-right: 0px;
+      }
+
+      .select2-selection__placeholder {
+        color         : var(--tile_maps--geosearch--color);
+        text-transform: uppercase;
+        font-size     : var(--tile_maps--geosearch--font-size);
+
+        &:hover {
+          color: var(--tile_maps--geosearch--color-hover);
+        }
+      }
+
+      .select2-selection__arrow {
+        height: 26px;
+
+        position: absolute;
+
+        top  : 1px;
+        right: 1px;
+
+        width: 20px;
+
+        b {
+          border           : none;
+          background-image : var(--tile_maps--select2-arrow);
+          background-size  : contain;
+          background-repeat: no-repeat;
+          width            : 22px;
+          height           : 22px;
+        }
+      }
     }
+
   }
-
-  .select2-selection--single {
-    background-color: var(--tile_maps--geosearch--color-background);
-    border          : none;
-    border-bottom   : 1px solid #aaa;
-    border-radius   : 0;
-    height          : unset;
-
-    .select2-selection__rendered {
-      color      : var(--tile_maps--geosearch--color);
-      line-height: 2;
-    }
-
-    .select2-selection__clear {
-      cursor       : pointer;
-      float        : right;
-      font-weight  : bold;
-      height       : 26px;
-      margin-right : 20px;
-      padding-right: 0px;
-    }
-
-    .select2-selection__placeholder {
-      color         : var(--tile_maps--geosearch--color);
-      text-transform: uppercase;
-      font-size     : var(--tile_maps--geosearch--font-size);
-
-      &:hover {
-        color: var(--tile_maps--geosearch--color-hover);
-      }
-    }
-
-    .select2-selection__arrow {
-      height: 26px;
-
-      position: absolute;
-
-      top  : 1px;
-      right: 1px;
-
-      width: 20px;
-
-      b {
-        border           : none;
-        background-image : var(--tile_maps--select2-arrow);
-        background-size  : contain;
-        background-repeat: no-repeat;
-        width            : 22px;
-        height           : 22px;
-      }
-    }
-  }
-
 }
