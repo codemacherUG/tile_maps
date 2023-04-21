@@ -200,6 +200,15 @@
               </config>
             </TCEforms>
           </settings.enableGeoLocationSearch>
+          <settings.selectPlaceholder>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.selectPlaceholder</label>
+              <config>
+                <type>input</type>
+              </config>
+            </TCEforms>
+          </settings.selectPlaceholder>
           <settings.nominatimEndpoint>
             <TCEforms>
               <label>
@@ -225,15 +234,6 @@
         </TCEforms>
         <type>array</type>
         <el>
-          <settings.selectPlaceholder>
-            <TCEforms>
-              <label>
-                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.selectPlaceholder</label>
-              <config>
-                <type>input</type>
-              </config>
-            </TCEforms>
-          </settings.selectPlaceholder>
           <settings.categories>
             <TCEforms>
               <label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories</label>

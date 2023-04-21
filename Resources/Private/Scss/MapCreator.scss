@@ -2,10 +2,10 @@
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 @import "~leaflet.locatecontrol/src/L.Control.Locate.scss";
-@import "~select2/dist/css/select2.css";
 @import "variables";
+@import "select2";
 
-.tile-maps-container {
+.frame-type-tilemaps_map {
 
   font-size  : var(--tile_maps--font-size);
   line-height: var(--tile_maps--line-height);
@@ -204,5 +204,3 @@
 
 
 }
-
-@import "select2";

@@ -7,7 +7,7 @@
   <div class="content-wrapper {f:if(condition:settings.hideMarkerList,then:'hidden')} ">
     <f:if condition="{settings.enableGeoLocationSearch}">
       <div class="geo-search" data-endpoint="{f:uri.page(pageUid:settings.nominatimEndpoint)}">
-        <select class="geo-search" name="geo-search-select" data-placeholder="{settings.selectPlaceholder}"></select>
+        <select class="geo-search" name="geo-search-select" data-placeholder="{f:if(condition:settings.selectPlaceholder,then:settings.selectPlaceholder,else:'&nbsp;')}"></select>
       </div>
     </f:if>
 

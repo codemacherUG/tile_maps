@@ -10,12 +10,11 @@ export default class GeoSearchController {
   public constructor(element: HTMLElement, onLocationFound: onLocationUpdateCallBack) {
     this.geosearchselect = $("[name=geo-search-select]", element);
     const endpoint = element.dataset.endpoint;
-    const placeholder_text = this.geosearchselect.data('placeholder');
 
     this.geosearchselect.select2({
       minimumInputLength: 3,
       allowClear: true,
-      placeholder: placeholder_text,
+      theme:'tile_maps',
       ajax: {
         delay: 1000,
         url: endpoint,
