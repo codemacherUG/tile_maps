@@ -15,7 +15,6 @@
     .select2-selection__arrow {
       b {
         // Rotation um 180 grad um z
-
         transform: rotateZ(180deg);
       }
     }
@@ -80,22 +79,24 @@
     }
 
     .select2-selection__arrow {
-      height: 26px;
-
+      height  : 26px;
       position: absolute;
-
-      top  : 1px;
-      right: 1px;
-
-      width: 20px;
+      right   : 5px;
+      top     : 12px;
+      width   : 20px;
 
       b {
-        border           : none;
-        background-image : var(--tile_maps--select2-arrow);
-        background-size  : contain;
-        background-repeat: no-repeat;
-        width            : 22px;
-        height           : 22px;
+        border             : none;
+        height             : 100%;
+        width              : 100%;
+        display            : block;
+        position           : relative;
+        left               : unset;
+        top                : unset;
+        margin             : 0;
+        background-image   : var(--tile_maps--select2-arrow);
+        background-repeat  : no-repeat;
+        background-position: center;
       }
     }
   }
