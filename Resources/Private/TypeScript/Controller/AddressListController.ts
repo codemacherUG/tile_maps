@@ -11,7 +11,7 @@ export default class AddressListController {
 
   public constructor(parentContainer: HTMLElement,) {
     this.items = new Array<AddressItem>();
-    this.counterElement = parentContainer.querySelector('.address-items-header .numof .number') as HTMLElement;
+    this.counterElement = parentContainer.querySelector('.address-items__header .numof .number') as HTMLElement;
     const elements = parentContainer.querySelectorAll('.address-item');
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i] as HTMLElement;
@@ -66,7 +66,8 @@ export default class AddressListController {
       let item = this.items[i];
       let parentNode = item.element.parentNode;
       if (parentNode) {
-        parentNode.appendChild(this.items[i].element);
+        console.log("tetst");
+        parentNode.appendChild(item.element);
       }
     }
     if (this.items.length > 0) {
@@ -76,6 +77,7 @@ export default class AddressListController {
         parentNode.scrollTo(0, 0);
       }
     }
+    console.log(this.items);
 
   }
 

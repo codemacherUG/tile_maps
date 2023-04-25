@@ -2,12 +2,16 @@
 
 namespace Codemacher\TileMaps\Domain\Repository;
 
-
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 
 class CategoryRepository extends Repository
 {
+  protected $defaultOrderings = [
+    'sorting' => QueryInterface::ORDER_ASCENDING
+  ];
+  
   public function findByUids(array $categories)
   {
     $query = $this->createQuery();
@@ -15,8 +19,7 @@ class CategoryRepository extends Repository
     $result = $query->matching(
       $query->in('uid', $categories),
     )
-    ->execute();
+      ->execute();
     return $result;
-   
   }
 }

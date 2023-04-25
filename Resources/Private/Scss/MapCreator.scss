@@ -125,18 +125,18 @@
         }
 
 
-        .address-items-header {
+        .address-items__header {
           display         : flex;
           justify-content : space-between;
-          color           : var(--tile_maps--address-items-header--color);
-          background-color: var(--tile_maps--address-items-header--color-background);
-          font-size       : var(--tile_maps--address-items-header--font-size);
+          color           : var(--tile_maps--address-items__header--color);
+          background-color: var(--tile_maps--address-items__header--color-background);
+          font-size       : var(--tile_maps--address-items__header--font-size);
           padding         : 1em 0;
           padding-right   : var(--tile_maps--content--padding-right);
 
         }
 
-        ul {
+        .address-items__list {
           list-style     : none;
           padding        : 0;
           margin         : 0;
@@ -150,13 +150,11 @@
           padding-bottom : 5em;
 
 
-          li {
-            padding: 0 0 1em 0;
-          }
         }
 
         .address-item {
           font-size: var(--tile_maps--address-items--font-size);
+          padding  : 0 0 var(--tile_maps--address-item--gap) 0;
         }
       }
     }
