@@ -17,16 +17,20 @@
     </div>
 
     <div class="address-items">
-      <div class="address-items__header">
-        <div class="numof"><span class="number">3</span>
-          <f:translate key="numof.label" />
+      <f:if condition="{settings.displayNumberOfResults} || {settings.displayDistanceToLocation}">
+        <div class="address-items__header">
+          <f:if condition="{settings.displayNumberOfResults}">
+            <div class="numof"><span class="number">3</span>
+              <f:translate key="numof.label" />
+            </div>
+          </f:if>
+          <f:if condition="{settings.displayDistanceToLocation}">
+            <div class="distance">
+              <f:translate key="distance-to-location" />
+            </div>
+          </f:if>
         </div>
-        <f:if condition="{settings.displayDistanceToLocation}">
-          <div class="distance">
-            <f:translate key="distance-to-location" />
-          </div>
-        </f:if>
-      </div>
+      </f:if>
       <div class="address-items__list">
         <f:for each="{addresses}" as="address">
           <f:render partial="AddressItem" arguments="{item:address,settings:settings}" />

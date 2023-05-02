@@ -49,7 +49,7 @@
 				<source>Activate location search field</source>
 			</trans-unit>
 			<trans-unit id="content_element.map.settings.enablelocationdetectionbutton">
-				<source>Add Location detection Button</source>
+				<source>Add Location detection button</source>
 			</trans-unit>
 			<trans-unit id="content_element.map.settings.nominatimendpoint">
 				<source>Nominatim Proxy Endpoint</source>
@@ -64,8 +64,12 @@
 				<source>Show position marker when the user clicks on the map</source>
 			</trans-unit>	
 			<trans-unit id="content_element.map.settings.displaydistancetolocation">
-				<source>Show distances to Locations</source>
+				<source>Show distances to locations</source>
 			</trans-unit>	
+			<trans-unit id="content_element.map.settings.displayNumberOfResults">
+				<source>Show number of results</source>
+			</trans-unit>	
+			
 			
     </body>
   </file>

@@ -21,17 +21,19 @@
         {item.address}
       </span>
       <div class="city">
-        <span property="postalCode">{item.zip}</span> <span property="addressLocality">{item.city}</span>
+        <span property="postalCode">{item.zip}</span>&nbsp;<span property="addressLocality">{item.city}</span>
       </div>
     </div>
     <span property="telephone">{item.phone}</span>
     <span>
       <f:link.email email="{item.email}" additionalAttributes="{property:'email'}" />
     </span>
-    <span>
-      <f:link.external uri="{item.www}" target="_blank" additionalAttributes="{property:'url'}">{item.www}
-      </f:link.external>
-    </span>
+    <f:if condition="{item.www}">
+      <span>
+        <f:link.external uri="{item.www}" target="_blank" additionalAttributes="{property:'url'}">{item.www}
+        </f:link.external>
+      </span>
+    </f:if>
   </div>
   <f:if condition="{settings.displayDistanceToLocation}">
     <div class="distance"></div>

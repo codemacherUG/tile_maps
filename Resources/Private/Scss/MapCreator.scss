@@ -185,7 +185,8 @@
 
     &:hover,
     &.hover {
-      background-color: lightgreen;
+      background-color: var(--tile_maps--address-item--hover--color-background);
+      color           : var(--tile_maps--address-item--hover--color);
     }
 
 
