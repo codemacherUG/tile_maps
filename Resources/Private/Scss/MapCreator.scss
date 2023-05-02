@@ -109,7 +109,7 @@
       }
 
       .address-items {
-        padding-left: var(--tile_maps--content--padding-left);
+        padding-left: calc(var(--tile_maps--content--padding-left) - var(--tile_maps--address-items--padding));
         flex-grow   : 1;
         flex-shrink : 1;
 
@@ -132,7 +132,9 @@
           background-color: var(--tile_maps--address-items__header--color-background);
           font-size       : var(--tile_maps--address-items__header--font-size);
           padding         : 1em 0;
-          padding-right   : var(--tile_maps--content--padding-right);
+          padding-right   : calc(var(--tile_maps--content--padding-right));
+          padding-left    : var(--tile_maps--address-items--padding);
+
 
         }
 
@@ -142,19 +144,21 @@
           margin         : 0;
           height         : 100%;
           width          : auto;
-          display        : block;
+          display        : flex;
+          flex-direction : column;
           overflow-y     : scroll;
           padding-right  : calc(var(--tile_maps--content--padding-right) / 2);
-          margin-right   : calc(var(--tile_maps--content--padding-right) / 2);
+          margin-right   : calc(var(--tile_maps--content--padding-right) / 2 - var(--tile_maps--address-items--padding));
           scrollbar-width: thin;
           padding-bottom : 5em;
+          row-gap        : var(--tile_maps--address-item--gap);
 
 
         }
 
         .address-item {
           font-size: var(--tile_maps--address-items--font-size);
-          padding  : 0 0 var(--tile_maps--address-item--gap) 0;
+          padding  : var(--tile_maps--address-items--padding);
         }
       }
     }
