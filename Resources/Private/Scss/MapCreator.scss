@@ -114,14 +114,15 @@
         flex-shrink : 1;
 
         &:after {
-          content   : ' ';
-          display   : block;
-          background: linear-gradient(to top, rgba(var(--tile_maps--content--color-background-rgb), 1) 0%, rgba(var(--tile_maps--content--color-background-rgb), 0) 100%);
-          height    : var(--tile_maps--address-items--dimmer-height);
-          position  : absolute;
-          left      : 0;
-          bottom    : 0;
-          width     : 100%;
+          content       : ' ';
+          display       : block;
+          background    : linear-gradient(to top, rgba(var(--tile_maps--content--color-background-rgb), 1) 0%, rgba(var(--tile_maps--content--color-background-rgb), 0) 100%);
+          height        : var(--tile_maps--address-items--dimmer-height);
+          position      : absolute;
+          left          : 0;
+          bottom        : 0;
+          width         : 100%;
+          pointer-events: none;
         }
 
 
