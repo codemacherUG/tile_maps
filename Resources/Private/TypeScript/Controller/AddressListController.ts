@@ -77,8 +77,6 @@ export default class AddressListController {
         parentNode.scrollTo(0, 0);
       }
     }
-    console.log(this.items);
-
   }
 
   public select(hightlight: HightlightTriggerReason, addressItem: AddressItem): void {
@@ -98,7 +96,9 @@ export default class AddressListController {
   }
 
   public refreshCounter(): void {
-    this.counterElement.innerHTML = this.countVisible().toString();
+    if (this.counterElement) {
+      this.counterElement.innerHTML = this.countVisible().toString();
+    }
   }
 
   protected countVisible(): number {
