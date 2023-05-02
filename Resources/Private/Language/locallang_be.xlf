@@ -66,8 +66,11 @@
 			<trans-unit id="content_element.map.settings.displaydistancetolocation">
 				<source>Show distances to locations</source>
 			</trans-unit>	
-			<trans-unit id="content_element.map.settings.displayNumberOfResults">
+			<trans-unit id="content_element.map.settings.displaynumberofresults">
 				<source>Show number of results</source>
+			</trans-unit>	
+			<trans-unit id="content_element.map.settings.enablecluster">
+				<source>Cluster the markers</source>
 			</trans-unit>	
 			
 			

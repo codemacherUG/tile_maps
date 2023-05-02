@@ -12,6 +12,15 @@
 </f:for>
 <div vocab="https://schema.org/" typeof="Organization" class="address-item hidden" data-uid="{item.uid}"
   data-category="{categoriesStr}">
+  <f:render section="address" arguments="{_all}" />
+  <f:if condition="{settings.displayDistanceToLocation}">
+    <div class="distance"></div>
+  </f:if>
+  <div class="address-item__popupcontent">
+    <f:render section="address" arguments="{_all}" />
+  </div>
+</div>
+<f:section name="address">
   <div class="general">
     <span property="name">{item.name}</span>
     <input type="hidden" name="latitude" value="{item.latitude}" />
@@ -35,7 +44,4 @@
       </span>
     </f:if>
   </div>
-  <f:if condition="{settings.displayDistanceToLocation}">
-    <div class="distance"></div>
-  </f:if>
-</div>
+</f:section>

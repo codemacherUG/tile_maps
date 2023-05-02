@@ -8,7 +8,7 @@ import AddressMarker from '../Leaflet/AddressMarker';
 
 export default class LeafletMapController {
 
-  private markerCluster: L.MarkerClusterGroup;
+  private markerLayer: L.FeatureGroup;
   private locationMarkerLayer: L.LayerGroup;
   private oneLocationMarker: L.Layer;
   private defaultMarkerIcon: L.Icon;
@@ -17,6 +17,7 @@ export default class LeafletMapController {
   private map: L.Map;
   private settings: any;
   private markerMap = new Map<AddressItem, L.Marker>();
+
 
   public onRefPositionMoved: onLocationUpdateCallBack;
   public onLocationUpdate: onLocationUpdateCallBack;
@@ -57,12 +58,17 @@ export default class LeafletMapController {
 
     }).addTo(this.map);
 
-    this.markerCluster = L.markerClusterGroup({
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-      zoomToBoundsOnClick: true,
-    });
-    this.map.addLayer(this.markerCluster);
+    if (this.settings.enableCluster > 0) {
+      this.markerLayer = L.markerClusterGroup({
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: true,
+        zoomToBoundsOnClick: true,
+      });
+    } else {
+      this.markerLayer = L.featureGroup();
+    }
+
+    this.map.addLayer(this.markerLayer);
     this.locationMarkerLayer = new L.LayerGroup();
 
     if (this.settings.setMaxBounds > 0) {
@@ -171,10 +177,10 @@ export default class LeafletMapController {
           icon: this.defaultMarkerIcon,
           addressItem: item
         });
-        if (this.settings.enableMarkerPopUp) {
-          marker.bindPopup(item.getMarkerHtml());
+        if (this.settings.enableMarkerPopUp > 0) {
+          marker.bindPopup(item.getPopupNode());
         }
-        marker.addTo(this.markerCluster)
+        marker.addTo(this.markerLayer)
           .on("click", (e: any) => {
             this.onAddressItemSelected(HightlightTriggerReason.selected, e.sourceTarget.options.addressItem);
           })
@@ -216,13 +222,13 @@ export default class LeafletMapController {
         });
         break;
       case HightlightTriggerReason.mouseover:
-        this.markerCluster.removeLayer(marker);
+        this.markerLayer.removeLayer(marker);
         this.map.addLayer(marker);
         marker.setIcon(this.hightlightMarkerIcon);
         break;
       case HightlightTriggerReason.mouseout:
         this.map.removeLayer(marker);
-        this.markerCluster.addLayer(marker);
+        this.markerLayer.addLayer(marker);
         marker.setIcon(this.defaultMarkerIcon);
         break;
 

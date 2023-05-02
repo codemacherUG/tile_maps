@@ -161,6 +161,11 @@
           font-size: var(--tile_maps--address-items--font-size);
           padding  : var(--tile_maps--address-items--padding);
         }
+
+        .address-item__popupcontent {
+          display: none;
+        }
+
       }
     }
 

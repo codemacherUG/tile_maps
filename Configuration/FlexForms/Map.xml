@@ -158,7 +158,7 @@
           <settings.displayNumberOfResults>
             <TCEforms>
               <label>
-                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.displayNumberOfResults</label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.displaynumberofresults</label>
               <config>
                 <type>check</type>
                 <default>1</default>
@@ -171,7 +171,24 @@
                 </items>
               </config>
             </TCEforms>
-          </settings.displayNumberOfResults>          
+          </settings.displayNumberOfResults>     
+          <settings.enableCluster>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.enablecluster</label>
+              <config>
+                <type>check</type>
+                <default>1</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.enableCluster>                  
         </el>
       </ROOT>
     </sDEF>
