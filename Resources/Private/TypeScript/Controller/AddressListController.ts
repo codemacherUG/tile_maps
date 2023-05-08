@@ -66,7 +66,6 @@ export default class AddressListController {
       let item = this.items[i];
       let parentNode = item.element.parentNode;
       if (parentNode) {
-        console.log("tetst");
         parentNode.appendChild(item.element);
       }
     }
