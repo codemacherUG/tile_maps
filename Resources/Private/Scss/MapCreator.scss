@@ -149,8 +149,22 @@
           flex-direction : column;
           overflow-y     : scroll;
           padding-right  : calc(var(--tile_maps--content--padding-right) / 2);
-          margin-right   : calc(var(--tile_maps--content--padding-right) / 2 - var(--tile_maps--address-items--padding));
-          scrollbar-width: thin;
+          margin-right   : calc(var(--tile_maps--content--padding-right) / 2);
+          scrollbar-width: thin; // FF
+
+          &::-webkit-scrollbar {
+            // chrome
+            width           : 5px !important;
+            //height          : 8px !important;
+            background-color: transparent;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background           : #aaa;
+            -webkit-border-radius: 1ex;
+            -webkit-box-shadow   : 0px 1px 2px rgba(0, 0, 0, 0.75);
+          }
+
           padding-bottom : 5em;
           row-gap        : var(--tile_maps--address-item--gap);
 
@@ -178,7 +192,7 @@
     display       : flex;
     flex-direction: column;
     row-gap       : 10px;
-    overflow      : scroll;
+    overflow      : hidden;
     height        : 600px;
 
   }
