@@ -24,6 +24,7 @@ class MapCreator {
 
       maps.onRefPositionMoved = (lat: number | null, lng: number | null) => {
         addressList.calculateDistanceToLocation(lat, lng);
+        addressList.scrollToTop();
       };
 
       addressList.setOnAddressItemSelected((type: HightlightTriggerReason, item: AddressItem) => maps.select(type, item));
@@ -46,8 +47,6 @@ class MapCreator {
       const filterElement = container.querySelector('.filter') as HTMLElement;
       if (filterElement) {
         const filter = new FilterController(filterElement, (filters: FilterMap) => {
-
-
           for (let i = 0; i < addressList.items.length; i++) {
             const addressItem = addressList.items[i];
             let element = addressItem.element;
@@ -61,8 +60,9 @@ class MapCreator {
                 }
               }
             }
-            addressList.refreshCounter();
           }
+          addressList.refreshCounter();
+          addressList.scrollToTop();
 
         });
         filter.init();

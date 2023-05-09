@@ -8,12 +8,17 @@ export default class AddressListController {
   private onAddressItemSelected: onAddressItemHighlightCallBack;
   private counterElement: HTMLElement;
   private location: L.LatLng | null;
+  private parentContainer: HTMLElement;
+  private elementsContainer: HTMLElement;
 
-  public constructor(parentContainer: HTMLElement,) {
+  public constructor(parentContainer: HTMLElement) {
     this.items = new Array<AddressItem>();
     this.location = null;
     this.counterElement = parentContainer.querySelector('.address-items__header .numof .number') as HTMLElement;
-    const elements = parentContainer.querySelectorAll('.address-item');
+    this.parentContainer = parentContainer;
+    this.elementsContainer = parentContainer.querySelector('.address-items__list') as HTMLElement;
+
+    const elements = this.parentContainer.querySelectorAll('.address-item');
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i] as HTMLElement;
       const item = new AddressItem(element);
@@ -110,6 +115,17 @@ export default class AddressListController {
     if (this.counterElement) {
       this.counterElement.innerHTML = this.countVisible().toString();
     }
+  }
+
+  public scrollToTop(): void {
+    // den parentContainer nach oben scrollen
+    // den parentContainer nach oben scrollen
+    console.log(this.elementsContainer);
+    this.elementsContainer.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   protected countVisible(): number {
