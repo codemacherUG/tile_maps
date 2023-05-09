@@ -119,8 +119,6 @@ export default class AddressListController {
 
   public scrollToTop(): void {
     // den parentContainer nach oben scrollen
-    // den parentContainer nach oben scrollen
-    console.log(this.elementsContainer);
     this.elementsContainer.scrollTo({
       top: 0,
       left: 0,
