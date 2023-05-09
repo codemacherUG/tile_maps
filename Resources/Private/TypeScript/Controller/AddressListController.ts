@@ -7,10 +7,11 @@ export default class AddressListController {
   public items: Array<AddressItem>;
   private onAddressItemSelected: onAddressItemHighlightCallBack;
   private counterElement: HTMLElement;
-
+  private location: L.LatLng | null;
 
   public constructor(parentContainer: HTMLElement,) {
     this.items = new Array<AddressItem>();
+    this.location = null;
     this.counterElement = parentContainer.querySelector('.address-items__header .numof .number') as HTMLElement;
     const elements = parentContainer.querySelectorAll('.address-item');
     for (let i = 0; i < elements.length; i++) {
@@ -35,16 +36,27 @@ export default class AddressListController {
   }
 
   public calculateDistanceToLocation(lat: number | null, lng: number | null): void {
+    this.setLocation(lat, lng);
+    this._calculateDistanceToLocation();
+  }
 
-    if (lat == null || lng == null) {
+  private setLocation(lat: number | null, lng: number | null): void {
+    if (lat === null || lng === null) {
+      this.location = null;
+    } else {
+      this.location = L.latLng(lat, lng);
+    }
+  }
+
+  private _calculateDistanceToLocation(): void {
+    if (this.location === null) {
       this.clearDistance();
       return;
     }
-    let refPosition = L.latLng(lat, lng);
     for (let i = 0; i < this.items.length; i++) {
       let item = this.items[i];
       let itemPosition = L.latLng(item.getLatitude() ?? 0, item.getLongitude() ?? 0);
-      item.setDistance(itemPosition.distanceTo(refPosition));
+      item.setDistance(itemPosition.distanceTo(this.location));
     }
     this.sort();
   }
