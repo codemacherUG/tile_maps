@@ -12,6 +12,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 
 use Codemacher\TileMaps\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 class MapController extends ActionController
 {
@@ -36,6 +37,7 @@ class MapController extends ActionController
     $tileEndpointPageRecord = BackendUtility::getRecord("pages", $extSettings['tileEndpoint']);
     $tileEndpointPageRecordFlexFormSettings = $this->flexFormService->convertFlexFormContentToArray($tileEndpointPageRecord['tx_tileproxy_flexform'])['settings'];
 
+    $this->addressRepository->setDefaultOrderings(['name' => QueryInterface::ORDER_ASCENDING]);
     $addresses = $this->addressRepository->findAll();
     $extSettings['bbox'] = $tileEndpointPageRecordFlexFormSettings['bbox'];
     $extSettings['grayscale'] = $contentObj->data['layout']  == '1677587808';
