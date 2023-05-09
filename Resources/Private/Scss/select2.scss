@@ -79,10 +79,10 @@
     }
 
     .select2-selection__arrow {
-      height  : 26px;
+      height  : 100%;
       position: absolute;
       right   : 5px;
-      top     : 12px;
+      top     : 0;
       width   : 20px;
 
       b {
@@ -97,6 +97,7 @@
         background-image   : var(--tile_maps--select2-arrow);
         background-repeat  : no-repeat;
         background-position: center;
+        background-size    : contain;
       }
     }
   }
