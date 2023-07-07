@@ -123,23 +123,23 @@ export default class LeafletMapController {
     this.defaultMarkerIcon = L.icon({
       iconRetinaUrl: this.settings.resourceUrl + 'marker-icon-2x.png',
       iconUrl: this.settings.resourceUrl + 'marker-icon.png',
-      shadowUrl: this.settings.resourceUrl + 'marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      tooltipAnchor: [16, -28],
-      shadowSize: [41, 41]
+      shadowUrl: this.settings.defaultMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-shadow.png' : undefined,
+      iconSize: this.settings.defaultMarkerIcon.iconSize.split(','),
+      iconAnchor: this.settings.defaultMarkerIcon.iconAnchor.split(','),
+      popupAnchor: this.settings.defaultMarkerIcon.popupAnchor.split(','),
+      tooltipAnchor: this.settings.defaultMarkerIcon.tooltipAnchor.split(','),
+      shadowSize: this.settings.defaultMarkerIcon.shadowSize ? this.settings.defaultMarkerIcon.shadowSize.split(',') : undefined,
     });
 
     this.hightlightMarkerIcon = L.icon({
       iconRetinaUrl: this.settings.resourceUrl + 'marker-highlight-icon-2x.png',
       iconUrl: this.settings.resourceUrl + 'marker-highlight-icon.png',
-      shadowUrl: this.settings.resourceUrl + 'marker-highlight-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      tooltipAnchor: [16, -28],
-      shadowSize: [41, 41]
+      shadowUrl: this.settings.hightlightMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-highlight-shadow.png' : undefined,
+      iconSize: this.settings.hightlightMarkerIcon.iconSize.split(','),
+      iconAnchor: this.settings.hightlightMarkerIcon.iconAnchor.split(','),
+      popupAnchor: this.settings.hightlightMarkerIcon.popupAnchor.split(','),
+      tooltipAnchor: this.settings.hightlightMarkerIcon.tooltipAnchor.split(','),
+      shadowSize: this.settings.hightlightMarkerIcon.shadowSize ? this.settings.defaultMarkerIcon.shadowSize.split(',') : undefined,
     });
 
     this.searchedLocationMarker =
@@ -148,12 +148,12 @@ export default class LeafletMapController {
         icon: L.icon({
           iconRetinaUrl: this.settings.resourceUrl + 'marker-searched-icon-2x.png',
           iconUrl: this.settings.resourceUrl + 'marker-searched-icon.png',
-          shadowUrl: this.settings.resourceUrl + 'marker-searched-hadow.png',
-          iconSize: [25, 41],
-          iconAnchor: [12, 41],
-          popupAnchor: [1, -34],
-          tooltipAnchor: [16, -28],
-          shadowSize: [41, 41]
+          shadowUrl: this.settings.searchedLocationMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-searched-hadow.png' : undefined,
+          iconSize: this.settings.searchedLocationMarkerIcon.iconSize.split(','),
+          iconAnchor: this.settings.searchedLocationMarkerIcon.iconAnchor.split(','),
+          popupAnchor: this.settings.searchedLocationMarkerIcon.popupAnchor.split(','),
+          tooltipAnchor: this.settings.searchedLocationMarkerIcon.tooltipAnchor.split(','),
+          shadowSize: this.settings.searchedLocationMarkerIcon.shadowSize ? this.settings.defaultMarkerIcon.shadowSize.split(',') : undefined
         })
       }).on("click", (e: any) => { this.markerClicked(e); })
         .on('dragend', (event) => {
@@ -173,13 +173,19 @@ export default class LeafletMapController {
     for (let i = 0; i < addressItems.length; i++) {
       let item = addressItems[i];
       if (item.getLatitude() != null && item.getLongitude() != null) {
+
         const marker = new AddressMarker([item.getLatitude() ?? 0, item.getLongitude() ?? 0], {
           icon: this.defaultMarkerIcon,
           addressItem: item
         });
+
         if (this.settings.enableMarkerPopUp > 0) {
           marker.bindPopup(item.getPopupNode());
         }
+        if (isNaN(marker.getLatLng().lat)) {
+          console.log(marker)
+        }
+      
         marker.addTo(this.markerLayer)
           .on("click", (e: any) => {
             this.onAddressItemSelected(HightlightTriggerReason.selected, e.sourceTarget.options.addressItem);
