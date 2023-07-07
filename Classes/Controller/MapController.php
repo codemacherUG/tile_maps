@@ -2,14 +2,13 @@
 
 namespace Codemacher\TileMaps\Controller;
 
+use Codemacher\TileMaps\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 
 use Codemacher\TileMaps\Domain\Repository\CategoryRepository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -38,7 +37,10 @@ class MapController extends ActionController
     $tileEndpointPageRecordFlexFormSettings = $this->flexFormService->convertFlexFormContentToArray($tileEndpointPageRecord['tx_tileproxy_flexform'])['settings'];
 
     $this->addressRepository->setDefaultOrderings(['name' => QueryInterface::ORDER_ASCENDING]);
-    $addresses = $this->addressRepository->findAll();
+    
+    $pidsStr =  $contentObj->data["pages"] ?? "";
+    $pids = explode(',', $pidsStr);
+    $addresses = $this->addressRepository->findByPids($pids);
     $extSettings['bbox'] = $tileEndpointPageRecordFlexFormSettings['bbox'];
     $extSettings['grayscale'] = $contentObj->data['layout']  == '1677587808';
     $extSettings['resourceUrl'] = PathUtility::getPublicResourceWebPath($this->settings['iconPath']);

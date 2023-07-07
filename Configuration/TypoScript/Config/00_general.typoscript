@@ -17,6 +17,27 @@ plugin.tx_tilemaps {
 	}
 	settings {
 		iconPath = EXT:tile_maps/Resources/Public/Icons/
+		defaultMarkerIcon {
+			iconSize = 25, 41
+      iconAnchor = 12, 41
+      popupAnchor = 1, -34
+      tooltipAnchor =  16, -28
+      shadowSize = 41, 41
+		}
+		hightlightMarkerIcon {
+		  iconSize = 25, 41,
+      iconAnchor = 12, 41,
+      popupAnchor = 1, -34,
+      tooltipAnchor = 16, -28,
+      shadowSize = 41, 41
+		}
+		searchedLocationMarkerIcon {
+		  iconSize = 25, 41,
+      iconAnchor = 12, 41,
+      popupAnchor = 1, -34,
+      tooltipAnchor = 16, -28,
+      shadowSize = 41, 41
+		}
 	}
 }
 
