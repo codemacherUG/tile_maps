@@ -1,11 +1,18 @@
 :root {
-  --tile_maps--height                                  : 600px;
+  --tile_maps--height                                  : auto;
+  --tile_maps--max-height                              : none;
   --tile_maps--width                                   : 100%;
   --tile_maps--font-size                               : 20px;
   --tile_maps--line-height                             : 1.1;
   --tile_maps--color-primary                           : #000;
+<<<<<<< HEAD
   --tile_maps--map--height                             : auto;
+=======
+  --tile_maps--map--height                             : 100%;
+  --tile_maps--map--max-height                         : 80vh;
+>>>>>>> 25bae3fb814295a2a6028561552120796e5b5cba
   --tile_maps--content--height                         : var(--tile_maps--map--height);
+  --tile_maps--content--max-height                     : var(--tile_maps--map--max-height);
   --tile_maps--content--padding-left                   : 20px;
   --tile_maps--content--padding-right                  : 20px;
   --tile_maps--content--color-background-rgb           : 247, 247, 247;
@@ -20,12 +27,20 @@
   --tile_maps--geosearch--suggestions--color-background: #fff;
   --tile_maps--geosearch--suggestions--font-size       : 15px;
   --tile_maps--address-items--font-size                : 15px;
-  --tile_maps--address-items--padding                  : 10px;
+  --tile_maps--address-items--line-height              : 1.2;
+  --tile_maps--address-items--padding-top              : 10px;
+  --tile_maps--address-items--padding-right            : 10px;
+  --tile_maps--address-items--padding-bottom           : 10px;
+  --tile_maps--address-items--padding-left             : 10px;
   --tile_maps--address-items--dimmer-height            : 5em;
   --tile_maps--address-items__header--font-size        : 12px;
   --tile_maps--address-items__header--color            : #6c6b69;
   --tile_maps--address-items__header--color-background : rgb(var(--tile_maps--content--color-background-rgb));
   --tile_maps--address-item--gap                       : 20px;
+  --tile_maps--address-item--padding-top               : 10px;
+  --tile_maps--address-item--padding-right             : 10px;
+  --tile_maps--address-item--padding-bottom            : 10px;
+  --tile_maps--address-item--padding-left              : 10px;
   --tile_maps--address-item--hover--color-background   : lightgreen;
   --tile_maps--address-item--hover--color              : black;
   --tile_maps--filter--font-size                       : 12px;
