@@ -2,7 +2,9 @@
 
 namespace Codemacher\TileMaps\Controller;
 
+
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3Fluid\Fluid\View\ViewInterface;
 
 class ContentElementController extends ActionController
 {
@@ -13,7 +15,7 @@ class ContentElementController extends ActionController
     $this->view->assign("data", $contentObj->data);
   }
 
-  protected function resolveView()
+  protected function resolveView() : ViewInterface
   {
     /** @var TYPO3\CMS\Fluid\View\TemplateView $view */
     $view = parent::resolveView();
