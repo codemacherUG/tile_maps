@@ -67,6 +67,7 @@ class MapCreator {
         });
         filter.init();
       }
+
       maps.addMarkers(addressList.items);
     }
   }

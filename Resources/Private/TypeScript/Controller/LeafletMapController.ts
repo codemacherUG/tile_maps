@@ -182,9 +182,6 @@ export default class LeafletMapController {
         if (this.settings.enableMarkerPopUp > 0) {
           marker.bindPopup(item.getPopupNode());
         }
-        if (isNaN(marker.getLatLng().lat)) {
-          console.log(marker)
-        }
       
         marker.addTo(this.markerLayer)
           .on("click", (e: any) => {
