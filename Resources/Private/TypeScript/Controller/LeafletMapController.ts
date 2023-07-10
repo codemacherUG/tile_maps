@@ -5,7 +5,6 @@ import "leaflet.locatecontrol";
 import { onLocationUpdateCallBack, onAddressItemHighlightCallBack, HightlightTriggerReason } from '../Types';
 import AddressMarker from '../Leaflet/AddressMarker';
 
-
 export default class LeafletMapController {
 
   private markerLayer: L.FeatureGroup;
@@ -124,22 +123,22 @@ export default class LeafletMapController {
       iconRetinaUrl: this.settings.resourceUrl + 'marker-icon-2x.png',
       iconUrl: this.settings.resourceUrl + 'marker-icon.png',
       shadowUrl: this.settings.defaultMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-shadow.png' : undefined,
-      iconSize: this.settings.defaultMarkerIcon.iconSize.split(','),
-      iconAnchor: this.settings.defaultMarkerIcon.iconAnchor.split(','),
-      popupAnchor: this.settings.defaultMarkerIcon.popupAnchor.split(','),
-      tooltipAnchor: this.settings.defaultMarkerIcon.tooltipAnchor.split(','),
-      shadowSize: this.settings.defaultMarkerIcon.shadowSize ? this.settings.defaultMarkerIcon.shadowSize.split(',') : undefined,
+      iconSize: this.stringToPoint(this.settings.defaultMarkerIcon.iconSize),
+      iconAnchor: this.stringToPoint(this.settings.defaultMarkerIcon.iconAnchor),
+      popupAnchor: this.stringToPoint(this.settings.defaultMarkerIcon.popupAnchor),
+      tooltipAnchor: this.stringToPoint(this.settings.defaultMarkerIcon.tooltipAnchor),
+      shadowSize: this.settings.defaultMarkerIcon.shadowSize ? this.stringToPoint(this.settings.defaultMarkerIcon.shadowSize) : undefined,
     });
 
     this.hightlightMarkerIcon = L.icon({
       iconRetinaUrl: this.settings.resourceUrl + 'marker-highlight-icon-2x.png',
       iconUrl: this.settings.resourceUrl + 'marker-highlight-icon.png',
       shadowUrl: this.settings.hightlightMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-highlight-shadow.png' : undefined,
-      iconSize: this.settings.hightlightMarkerIcon.iconSize.split(','),
-      iconAnchor: this.settings.hightlightMarkerIcon.iconAnchor.split(','),
-      popupAnchor: this.settings.hightlightMarkerIcon.popupAnchor.split(','),
-      tooltipAnchor: this.settings.hightlightMarkerIcon.tooltipAnchor.split(','),
-      shadowSize: this.settings.hightlightMarkerIcon.shadowSize ? this.settings.defaultMarkerIcon.shadowSize.split(',') : undefined,
+      iconSize: this.stringToPoint(this.settings.hightlightMarkerIcon.iconSize),
+      iconAnchor: this.stringToPoint(this.settings.hightlightMarkerIcon.iconAnchor),
+      popupAnchor: this.stringToPoint(this.settings.hightlightMarkerIcon.popupAnchor),
+      tooltipAnchor: this.stringToPoint(this.settings.hightlightMarkerIcon.tooltipAnchor),
+      shadowSize: this.settings.hightlightMarkerIcon.shadowSize ? this.stringToPoint(this.settings.defaultMarkerIcon.shadowSize) : undefined,
     });
 
     this.searchedLocationMarker =
@@ -149,11 +148,11 @@ export default class LeafletMapController {
           iconRetinaUrl: this.settings.resourceUrl + 'marker-searched-icon-2x.png',
           iconUrl: this.settings.resourceUrl + 'marker-searched-icon.png',
           shadowUrl: this.settings.searchedLocationMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-searched-hadow.png' : undefined,
-          iconSize: this.settings.searchedLocationMarkerIcon.iconSize.split(','),
-          iconAnchor: this.settings.searchedLocationMarkerIcon.iconAnchor.split(','),
-          popupAnchor: this.settings.searchedLocationMarkerIcon.popupAnchor.split(','),
-          tooltipAnchor: this.settings.searchedLocationMarkerIcon.tooltipAnchor.split(','),
-          shadowSize: this.settings.searchedLocationMarkerIcon.shadowSize ? this.settings.defaultMarkerIcon.shadowSize.split(',') : undefined
+          iconSize: this.stringToPoint(this.settings.searchedLocationMarkerIcon.iconSize),
+          iconAnchor: this.stringToPoint(this.settings.searchedLocationMarkerIcon.iconAnchor),
+          popupAnchor: this.stringToPoint(this.settings.searchedLocationMarkerIcon.popupAnchor),
+          tooltipAnchor: this.stringToPoint(this.settings.searchedLocationMarkerIcon.tooltipAnchor),
+          shadowSize: this.settings.searchedLocationMarkerIcon.shadowSize ? this.stringToPoint(this.settings.defaultMarkerIcon.shadowSize) : undefined
         })
       }).on("click", (e: any) => { this.markerClicked(e); })
         .on('dragend', (event) => {
@@ -185,7 +184,7 @@ export default class LeafletMapController {
         if (isNaN(marker.getLatLng().lat)) {
           console.log(marker)
         }
-      
+
         marker.addTo(this.markerLayer)
           .on("click", (e: any) => {
             this.onAddressItemSelected(HightlightTriggerReason.selected, e.sourceTarget.options.addressItem);
@@ -202,6 +201,14 @@ export default class LeafletMapController {
       }
     }
   }
+
+
+  private stringToPoint(text : string) :  [number, number] | undefined {
+    let parts = text.split(',');
+    if(parts.length != 2) return undefined;
+    return [parseFloat(parts[0]),parseFloat(parts[1])];
+  }
+
 
   public setSearchedPosition(lat: number, lng: number): void {
     const pos = L.latLng(lat, lng);
