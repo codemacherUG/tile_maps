@@ -6,11 +6,13 @@ import FilterController from "./Controller/FilterController";
 import { FilterMap, HightlightTriggerReason } from "./Types";
 import AddressItem from "./Data/AddressItem";
 
+
 class MapCreator {
   protected valuesInArray<T>(arrayA: T[], arrayB: T[]): boolean {
     return arrayA.every(value => arrayB.includes(value));
   }
 
+  
   public constructor() {
     const elements = document.querySelectorAll('.frame-type-tilemaps_map');
     for (let i = 0; i < elements.length; i++) {
