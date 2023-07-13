@@ -18,6 +18,9 @@ plugin.tx_tilemaps {
 	settings {
 		iconPath = EXT:tile_maps/Resources/Public/Icons/
 		defaultMarkerIcon {
+			iconName = marker-icon.png
+			iconName2x = marker-icon-2x.png
+			shadowIconName = marker-shadow.png
 			iconSize = 25, 41
       iconAnchor = 12, 41
       popupAnchor = 1, -34
@@ -25,6 +28,9 @@ plugin.tx_tilemaps {
       shadowSize = 41, 41
 		}
 		hightlightMarkerIcon {
+			iconName = marker-highlight-icon.png
+			iconName2x = marker-highlight-icon-2x.png
+			shadowIconName = marker-highlight-shadow.png		
 		  iconSize = 25, 41
       iconAnchor = 12, 41
       popupAnchor = 1, -34
@@ -32,6 +38,9 @@ plugin.tx_tilemaps {
       shadowSize = 41, 41
 		}
 		searchedLocationMarkerIcon {
+			iconName = marker-searched-icon.png
+			iconName2x = marker-searched-icon-2x.png
+			shadowIconName = marker-searched-hadow.png		
 		  iconSize = 25, 41
       iconAnchor = 12, 41
       popupAnchor = 1, -34

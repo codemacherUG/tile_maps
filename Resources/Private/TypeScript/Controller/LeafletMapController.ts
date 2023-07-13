@@ -120,20 +120,20 @@ export default class LeafletMapController {
     });
 
     this.defaultMarkerIcon = L.icon({
-      iconRetinaUrl: this.settings.resourceUrl + 'marker-icon-2x.png',
-      iconUrl: this.settings.resourceUrl + 'marker-icon.png',
-      shadowUrl: this.settings.defaultMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-shadow.png' : undefined,
+      iconRetinaUrl: this.settings.defaultMarkerIcon.iconName2x ? this.settings.resourceUrl + this.settings.defaultMarkerIcon.iconName2x : undefined,
+      iconUrl: this.settings.resourceUrl + this.settings.defaultMarkerIcon.iconName,
+      shadowUrl: this.settings.defaultMarkerIcon.shadowIconName ? this.settings.resourceUrl + this.settings.defaultMarkerIcon.shadowIconName : undefined,
       iconSize: this.stringToPoint(this.settings.defaultMarkerIcon.iconSize),
       iconAnchor: this.stringToPoint(this.settings.defaultMarkerIcon.iconAnchor),
       popupAnchor: this.stringToPoint(this.settings.defaultMarkerIcon.popupAnchor),
       tooltipAnchor: this.stringToPoint(this.settings.defaultMarkerIcon.tooltipAnchor),
       shadowSize: this.settings.defaultMarkerIcon.shadowSize ? this.stringToPoint(this.settings.defaultMarkerIcon.shadowSize) : undefined,
     });
-
+console.log(this.settings.resourceUrl + this.settings.defaultMarkerIcon.iconName);
     this.hightlightMarkerIcon = L.icon({
-      iconRetinaUrl: this.settings.resourceUrl + 'marker-highlight-icon-2x.png',
-      iconUrl: this.settings.resourceUrl + 'marker-highlight-icon.png',
-      shadowUrl: this.settings.hightlightMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-highlight-shadow.png' : undefined,
+      iconRetinaUrl: this.settings.hightlightMarkerIcon.iconName2x ? this.settings.resourceUrl + this.settings.hightlightMarkerIcon.iconName2x : undefined,
+      iconUrl: this.settings.resourceUrl + this.settings.hightlightMarkerIcon.iconName,
+      shadowUrl: this.settings.hightlightMarkerIcon.shadowIconName ? this.settings.resourceUrl + this.settings.hightlightMarkerIcon.shadowIconName : undefined,
       iconSize: this.stringToPoint(this.settings.hightlightMarkerIcon.iconSize),
       iconAnchor: this.stringToPoint(this.settings.hightlightMarkerIcon.iconAnchor),
       popupAnchor: this.stringToPoint(this.settings.hightlightMarkerIcon.popupAnchor),
@@ -145,9 +145,9 @@ export default class LeafletMapController {
       L.marker([0, 0], {
         draggable: true,
         icon: L.icon({
-          iconRetinaUrl: this.settings.resourceUrl + 'marker-searched-icon-2x.png',
-          iconUrl: this.settings.resourceUrl + 'marker-searched-icon.png',
-          shadowUrl: this.settings.searchedLocationMarkerIcon.shadowSize ? this.settings.resourceUrl + 'marker-searched-hadow.png' : undefined,
+          iconRetinaUrl: this.settings.searchedLocationMarkerIcon.iconName2x ? this.settings.resourceUrl + this.settings.searchedLocationMarkerIcon.iconName2x : undefined,
+          iconUrl: this.settings.resourceUrl + this.settings.searchedLocationMarkerIcon.iconName,
+          shadowUrl: this.settings.searchedLocationMarkerIcon.shadowIconName ? this.settings.resourceUrl + this.settings.searchedLocationMarkerIcon.shadowIconName : undefined,
           iconSize: this.stringToPoint(this.settings.searchedLocationMarkerIcon.iconSize),
           iconAnchor: this.stringToPoint(this.settings.searchedLocationMarkerIcon.iconAnchor),
           popupAnchor: this.stringToPoint(this.settings.searchedLocationMarkerIcon.popupAnchor),
