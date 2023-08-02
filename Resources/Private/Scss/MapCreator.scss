@@ -186,6 +186,10 @@
           padding-left  : var(--tile_maps--address-item--padding-left);
           padding-right : var(--tile_maps--address-item--padding-right);
         }
+        
+        .distance {
+          white-space: nowrap;
+        }
 
         .address-item__popupcontent {
           display: none;
@@ -212,7 +216,8 @@
   .address-item {
     display        : flex;
     justify-content: space-between;
-
+    background-color: var(--tile_maps--address-item--color-background);
+    color           : var(--tile_maps--address-item--color);
     &:hover,
     &.hover {
       background-color: var(--tile_maps--address-item--hover--color-background);

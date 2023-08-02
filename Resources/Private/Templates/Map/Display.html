@@ -20,9 +20,14 @@
       <f:if condition="{settings.displayNumberOfResults} || {settings.displayDistanceToLocation}">
         <div class="address-items__header">
           <f:if condition="{settings.displayNumberOfResults}">
-            <div class="numof"><span class="number">3</span>
-              <f:translate key="numof.label" />
-            </div>
+            <f:then>
+              <div class="numof"><span class="number">3</span>
+                <f:translate key="numof.label" />
+              </div>
+            </f:then>
+            <f:else>
+              <div class="dummy"></div>
+            </f:else>
           </f:if>
           <f:if condition="{settings.displayDistanceToLocation}">
             <div class="distance">

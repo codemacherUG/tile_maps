@@ -16,6 +16,12 @@
 			<trans-unit id="content_element.map.settings.setmaxbounds">
 				<source>Set the bounding box of the endpoint as maximum bounds of the map</source>
 			</trans-unit>
+			<trans-unit id="content_element.map.settings.fitBounds">
+				<source>Sets a map view that contains the marker with the maximum zoom level possible.</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.fitBoundsPadding">
+				<source>The padding for fitBounds</source>
+			</trans-unit>
 			<trans-unit id="content_element.map.settings.selectPlaceholder">
 				<source>Placeholder text</source>
 			</trans-unit>

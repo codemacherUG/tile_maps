@@ -129,7 +129,7 @@ export default class LeafletMapController {
       tooltipAnchor: this.stringToPoint(this.settings.defaultMarkerIcon.tooltipAnchor),
       shadowSize: this.settings.defaultMarkerIcon.shadowSize ? this.stringToPoint(this.settings.defaultMarkerIcon.shadowSize) : undefined,
     });
-console.log(this.settings.resourceUrl + this.settings.defaultMarkerIcon.iconName);
+
     this.hightlightMarkerIcon = L.icon({
       iconRetinaUrl: this.settings.hightlightMarkerIcon.iconName2x ? this.settings.resourceUrl + this.settings.hightlightMarkerIcon.iconName2x : undefined,
       iconUrl: this.settings.resourceUrl + this.settings.hightlightMarkerIcon.iconName,
@@ -181,7 +181,7 @@ console.log(this.settings.resourceUrl + this.settings.defaultMarkerIcon.iconName
         if (this.settings.enableMarkerPopUp > 0) {
           marker.bindPopup(item.getPopupNode());
         }
-      
+
         marker.addTo(this.markerLayer)
           .on("click", (e: any) => {
             this.onAddressItemSelected(HightlightTriggerReason.selected, e.sourceTarget.options.addressItem);
@@ -197,13 +197,22 @@ console.log(this.settings.resourceUrl + this.settings.defaultMarkerIcon.iconName
         this.markerMap.set(item, marker);
       }
     }
+
+    if (this.settings.fitBounds > 0) {
+      var bounds = this.markerLayer.getBounds();
+      const fitBoundsPadding = this.settings.fitBoundsPadding.split(',').map(function (item: string) {
+        return parseInt(item);
+      });
+      this.map.fitBounds(bounds,{padding: fitBoundsPadding, maxZoom: parseInt(this.settings.maxZoom ?? "18") });
+    }
+
   }
 
 
-  private stringToPoint(text : string) :  [number, number] | undefined {
+  private stringToPoint(text: string): [number, number] | undefined {
     let parts = text.split(',');
-    if(parts.length != 2) return undefined;
-    return [parseFloat(parts[0]),parseFloat(parts[1])];
+    if (parts.length != 2) return undefined;
+    return [parseFloat(parts[0]), parseFloat(parts[1])];
   }
 
 
