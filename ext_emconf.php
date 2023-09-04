@@ -14,7 +14,7 @@ $EM_CONF[$_EXTKEY] = [
 		'depends' => [
 			'typo3' => '11.5.0-12.2.99',
 			'tile_proxy' => '1.1.0-1.1.99',
-			'tt_address' => '7.1.0-7.1.99',
+			'tt_address' => '7.1.0-8.0.99',
 		],
 		'conflicts' => [],
 		'suggests' => []
