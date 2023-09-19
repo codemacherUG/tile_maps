@@ -1,6 +1,6 @@
 import AddressItem from "./Data/AddressItem";
 
-export enum HightlightTriggerReason {
+export enum SelectedTriggerReason {
   selected,
   mouseover,
   mouseout
@@ -9,4 +9,4 @@ export enum HightlightTriggerReason {
 export type FilterMap = Map<string, string[]>;
 
 export type onLocationUpdateCallBack = (lat: number | null, lng: number | null) => void;
-export type onAddressItemHighlightCallBack = (type : HightlightTriggerReason,item: AddressItem) => void;
+export type onAddressItemSelectedCallBack = (type : SelectedTriggerReason,item: AddressItem) => void;

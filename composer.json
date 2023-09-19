@@ -40,9 +40,9 @@
     }
   },
   "require": {
-    "typo3/cms-core": "^11.5|^12.2",
+    "typo3/cms-core": "^11.5|^12.4",
     "php": "^7.4.0 || ^8",
     "codemacher/tile_proxy": "@dev",
-    "friendsoftypo3/tt-address": "^8.0"
+    "friendsoftypo3/tt-address": "^7.1|^8.0"
   }
 }

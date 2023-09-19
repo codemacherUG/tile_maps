@@ -12,7 +12,6 @@
 			<trans-unit id="content_element.map.settings.endpoint">
 				<source>Tile Proxy Endpoint</source>
 			</trans-unit>
-			
 			<trans-unit id="content_element.map.settings.setmaxbounds">
 				<source>Set the bounding box of the endpoint as maximum bounds of the map</source>
 			</trans-unit>
@@ -21,9 +20,6 @@
 			</trans-unit>
 			<trans-unit id="content_element.map.settings.fitBoundsPadding">
 				<source>The padding for fitBounds</source>
-			</trans-unit>
-			<trans-unit id="content_element.map.settings.selectPlaceholder">
-				<source>Placeholder text</source>
 			</trans-unit>
 			<trans-unit id="content_element.map.settings.yes">
 				<source>Yes</source>
@@ -40,46 +36,12 @@
 			<trans-unit id="content_element.map.pages">
 				<source>Source folder for markers(tt_address)</source>
 			</trans-unit>
-
 			<trans-unit id="content_element.map.settings.tab.general">
 				<source>General</source>
 			</trans-unit>
-			<trans-unit id="content_element.map.settings.tab.filter">
-				<source>Filter</source>
-			</trans-unit>
-
-			<trans-unit id="content_element.map.settings.tab.geolocation">
-				<source>Location Search</source>
-			</trans-unit>
-			<trans-unit id="content_element.map.settings.enablegeolocationsearch">
-				<source>Activate location search field</source>
-			</trans-unit>
-			<trans-unit id="content_element.map.settings.enablelocationdetectionbutton">
-				<source>Add Location detection button</source>
-			</trans-unit>
-			<trans-unit id="content_element.map.settings.nominatimendpoint">
-				<source>Nominatim Proxy Endpoint</source>
-			</trans-unit>			
-			<trans-unit id="content_element.map.settings.hidemarkerlist">
-				<source>Hide marker list</source>
-			</trans-unit>		
-			<trans-unit id="content_element.map.settings.enablemarkerpopup">
-				<source>Enable marker popup on click</source>
-			</trans-unit>		
-			<trans-unit id="content_element.map.settings.enabledistancemarker">
-				<source>Show position marker when the user clicks on the map</source>
-			</trans-unit>	
-			<trans-unit id="content_element.map.settings.displaydistancetolocation">
-				<source>Show distances to locations</source>
-			</trans-unit>	
-			<trans-unit id="content_element.map.settings.displaynumberofresults">
-				<source>Show number of results</source>
-			</trans-unit>	
 			<trans-unit id="content_element.map.settings.enablecluster">
 				<source>Cluster the markers</source>
 			</trans-unit>	
-			
-			
     </body>
   </file>
 </xliff>

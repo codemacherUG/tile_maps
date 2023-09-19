@@ -31,14 +31,12 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
-
   "dependencies": {
     "@types/leaflet.locatecontrol": "^0.74.1",
     "@types/select2": "^4.0.57",
     "file-loader": "^6.2.0",
     "jquery": "^3.6.3",
     "leaflet": "^1.9.4",
-    "leaflet.locatecontrol": "^0.79.0",
     "leaflet.markercluster": "^1.5.3",
     "select2": "^4.1.0-rc.0"
   }

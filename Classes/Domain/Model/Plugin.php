@@ -3,7 +3,6 @@
 namespace Codemacher\TileMaps\Domain\Model;
 
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-use Codemacher\TileMaps\Controller\ContentElementController;
 
 class Plugin
 {
@@ -27,12 +26,12 @@ class Plugin
   /**
    * @var array
    */
-  protected $controllerActions = [ContentElementController::class => 'generic'];
+  protected $controllerActions = [];
 
   /**
    * @var array
    */
-  protected $nonCacheableControllerActions = [ContentElementController::class => ''];
+  protected $nonCacheableControllerActions = [];
 
   /**
    * @var string

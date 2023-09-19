@@ -16,7 +16,6 @@ export default class AddressItem {
     return elem;
   }
   
-
   public getMarkerHtml(): string {
     const elem = this.getMarkerNode();
     if (elem) return elem.innerHTML;
@@ -35,42 +34,6 @@ export default class AddressItem {
     return null;
   }
 
-  private formatDistance(value: number): string {
-    if (value >= 1000) {
-      return Math.round(value / 1000.0) + " km"
-    } else if (value >= 100) {
-      return Math.round(value) + " m"
-    }
-    return value.toFixed(1) + " m"
 
-  };
-
-  public setDistance(distance: number | null): void {
-    let distanceElement = this.element.querySelector(".distance") as HTMLElement;
-    this.element.dataset.distance = distance ? distance.toString() : "";
-    if (distanceElement) {
-      if (distance != null) {
-        distanceElement.innerHTML = this.formatDistance(distance);
-      } else {
-        distanceElement.innerHTML = "-";
-      }
-    }
-  }
-
-  public getDistance(): number {
-    return parseFloat(this.element.dataset.distance ?? "");
-  }
-
-  public setVisibility(visible: boolean): void {
-    if (visible) {
-      this.element.classList.remove("hidden");
-    } else {
-      this.element.classList.add("hidden");
-    }
-  }
-
-  public getVisibility(): boolean {
-    return !this.element.classList.contains("hidden");
-  }
 }
 

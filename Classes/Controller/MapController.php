@@ -2,16 +2,18 @@
 
 namespace Codemacher\TileMaps\Controller;
 
-use Codemacher\TileMaps\Domain\Repository\AddressRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 use Codemacher\TileMaps\Domain\Repository\CategoryRepository;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use Codemacher\TileMaps\Domain\Repository\AddressRepository;
+
 
 class MapController extends ActionController
 {
@@ -24,7 +26,7 @@ class MapController extends ActionController
   ) {
   }
 
-  public function displayAction()
+  public function displayAction() : ResponseInterface
   {
     /** @var PageRenderer $pageRenderer */
     $pageRenderer =  GeneralUtility::makeInstance(PageRenderer::class);
@@ -60,5 +62,6 @@ class MapController extends ActionController
     $this->view->assign("addresses",$addresses);
     $this->view->assign("data", $contentObj->data);
     $this->view->assign("settings",$extSettings);
+    return $this->htmlResponse();
   }
 }

@@ -3,27 +3,7 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2023-03-01T20:09:00Z" product-name="tile_maps">
     <header />
     <body>
-			<trans-unit id="distance-to-location">
-				<source>Distance to Location</source>
-			</trans-unit>
-			<trans-unit id="numof.label">
-				<source>Results</source>
-			</trans-unit>
-      <trans-unit id="leaflet.locatecontrol.title">
-				<source>Show me where I am</source>
-			</trans-unit>
-      <trans-unit id="leaflet.locatecontrol.metersUnit">
-				<source>meters</source>
-			</trans-unit>
-      <trans-unit id="leaflet.locatecontrol.feetUnit">
-				<source>feet</source>
-			</trans-unit>
-      <trans-unit id="leaflet.locatecontrol.popup">
-				<source>You are within {distance} {unit} from this point</source>
-			</trans-unit>
-      <trans-unit id="leaflet.locatecontrol.outsideMapBoundsMsg">
-				<source>You seem located outside the boundaries of the map</source>
-			</trans-unit>
+
     </body>
   </file>
 </xliff>

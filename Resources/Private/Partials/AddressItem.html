@@ -1,49 +1,8 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:variable name="categoriesStr" value="" />
-<f:for each="{item.categories}" as="category" iteration="catIterator">
-  <f:if condition="{catIterator.isFirst}">
-    <f:then>
-      <f:variable name="categoriesStr" value="{category.uid}" />
-    </f:then>
-    <f:else>
-      <f:variable name="categoriesStr" value="{categoriesStr},{category.uid}" />
-    </f:else>
-  </f:if>
-</f:for>
-<div vocab="https://schema.org/" typeof="Organization" class="address-item hidden" data-uid="{item.uid}"
-  data-category="{categoriesStr}">
-  <f:render section="address" arguments="{item:item, exportLatLng:1}" />
-  <f:if condition="{settings.displayDistanceToLocation}">
-    <div class="distance"></div>
-  </f:if>
+<div class="address-item hidden" data-uid="{item.uid}">
+  <f:render partial="address" arguments="{item:item, exportLatLng:1}" />
   <div class="address-item__popupcontent">
-    <f:render section="address" arguments="{item:item}" />
+    <f:render partial="popupContent" arguments="{item:item}" />
   </div>
 </div>
-<f:section name="address">
-  <div class="general">
-    <span property="name">{item.name}</span>
-    <f:if condition="{exportLatLng}">
-      <input type="hidden" name="latitude" value="{item.latitude}" />
-      <input type="hidden" name="longitude" value="{item.longitude}" />
-    </f:if>
-    <div property="address" typeof="PostalAddress">
-      <span property="streetAddress">
-        {item.address}
-      </span>
-      <div class="city">
-        <span property="postalCode">{item.zip}</span>&nbsp;<span property="addressLocality">{item.city}</span>
-      </div>
-    </div>
-    <span property="telephone">{item.phone}</span>
-    <span>
-      <f:link.email email="{item.email}" additionalAttributes="{property:'email'}" />
-    </span>
-    <f:if condition="{item.www}">
-      <span>
-        <f:link.external uri="{item.www}" target="_blank" additionalAttributes="{property:'url'}">{item.www}
-        </f:link.external>
-      </span>
-    </f:if>
-  </div>
-</f:section>
+

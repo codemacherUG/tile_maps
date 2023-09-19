@@ -4,38 +4,8 @@
     <div class="map" data-endpoint="{f:uri.page(pageUid:settings.tileEndpoint)}"
       data-settings="{f:format.json(value: settings)}"></div>
   </div>
-  <div class="content-wrapper {f:if(condition:settings.hideMarkerList,then:'hidden')} ">
-    <f:if condition="{settings.enableGeoLocationSearch}">
-      <div class="geo-search" data-endpoint="{f:uri.page(pageUid:settings.nominatimEndpoint)}">
-        <select class="geo-search" name="geo-search-select"
-          data-placeholder="{f:if(condition:settings.selectPlaceholder,then:settings.selectPlaceholder,else:'&nbsp;')}"></select>
-      </div>
-    </f:if>
-
-    <div class="filter">
-      <f:render partial="Filter" arguments="{_all}" />
-    </div>
-
+  <div class="content-wrapper hidden">
     <div class="address-items">
-      <f:if condition="{settings.displayNumberOfResults} || {settings.displayDistanceToLocation}">
-        <div class="address-items__header">
-          <f:if condition="{settings.displayNumberOfResults}">
-            <f:then>
-              <div class="numof"><span class="number">3</span>
-                <f:translate key="numof.label" />
-              </div>
-            </f:then>
-            <f:else>
-              <div class="dummy"></div>
-            </f:else>
-          </f:if>
-          <f:if condition="{settings.displayDistanceToLocation}">
-            <div class="distance">
-              <f:translate key="distance-to-location" />
-            </div>
-          </f:if>
-        </div>
-      </f:if>
       <div class="address-items__list">
         <f:for each="{addresses}" as="address">
           <f:render partial="AddressItem" arguments="{item:address,settings:settings}" />
