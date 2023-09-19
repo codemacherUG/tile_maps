@@ -1,30 +1,24 @@
 import AddressItem from '../Data/AddressItem';
 import L from "leaflet";
 import "leaflet.markercluster";
-import { onLocationUpdateCallBack, onAddressItemSelectedCallBack, SelectedTriggerReason } from '../Types';
+import { onAddressItemSelectedCallBack, SelectedTriggerReason } from '../Types';
 import AddressMarker from '../Leaflet/AddressMarker';
 
 export default class LeafletMapController {
 
-  private markerLayer: L.FeatureGroup;
-  private defaultMarkerIcon: L.Icon;
-  private hightlightMarkerIcon: L.Icon;
-  private map: L.Map;
-  private settings: any;
-  private markerMap = new Map<AddressItem, L.Marker>();
+  protected markerLayer: L.FeatureGroup;
+  protected defaultMarkerIcon: L.Icon;
+  protected hightlightMarkerIcon: L.Icon;
+  protected map: L.Map;
+  protected settings: any;
+  protected markerMap = new Map<AddressItem, L.Marker>();
 
-  public onRefPositionMoved: onLocationUpdateCallBack | undefined;
-  public onLocationUpdate: onLocationUpdateCallBack | undefined;
   public onAddressItemSelected: onAddressItemSelectedCallBack | undefined;
 
-  public constructor(element: HTMLElement,
-    onLocationFound: onLocationUpdateCallBack | undefined = undefined,
-    onRefPositionMoved: onLocationUpdateCallBack | undefined = undefined,
+  public constructor(element: HTMLElement, 
     onAddressItemSelected: onAddressItemSelectedCallBack | undefined = undefined) {
 
-    this.onLocationUpdate = onLocationFound;
     this.onAddressItemSelected = onAddressItemSelected;
-    this.onRefPositionMoved = onRefPositionMoved;
     this.settings = JSON.parse(element.dataset.settings ?? "");
     const endpoint = element.dataset.endpoint;
 
@@ -95,11 +89,6 @@ export default class LeafletMapController {
 
   }
 
-  protected markerClicked(e: any): void {
-    if (this.onLocationUpdate) this.onLocationUpdate(e.latlng.lat, e.latlng.lng);
-  }
-
-
   public addMarkers(addressItems: Array<AddressItem>): void {
     for (let i = 0; i < addressItems.length; i++) {
       let item = addressItems[i];
@@ -140,7 +129,7 @@ export default class LeafletMapController {
 
   }
 
-  private stringToPoint(text: string): [number, number] | undefined {
+  protected stringToPoint(text: string): [number, number] | undefined {
     let parts = text.split(',');
     if (parts.length != 2) return undefined;
     return [parseFloat(parts[0]), parseFloat(parts[1])];

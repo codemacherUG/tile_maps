@@ -7,6 +7,4 @@ export enum SelectedTriggerReason {
 }
 
 export type FilterMap = Map<string, string[]>;
-
-export type onLocationUpdateCallBack = (lat: number | null, lng: number | null) => void;
 export type onAddressItemSelectedCallBack = (type : SelectedTriggerReason,item: AddressItem) => void;
