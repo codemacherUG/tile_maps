@@ -17,7 +17,7 @@ class ContentElementController extends ActionController
 
   protected function resolveView() : ViewInterface
   {
-    /** @var TYPO3\CMS\Fluid\View\TemplateView $view */
+    /** @var \TYPO3\CMS\Fluid\View\TemplateView $view */
     $view = parent::resolveView();
     $actionName = $this->request->getControllerActionName();
     if ($actionName == "generic") {

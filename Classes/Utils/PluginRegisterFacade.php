@@ -11,7 +11,6 @@ use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 use Codemacher\TileMaps\Domain\Model\Plugin;
 
-
 class PluginRegisterFacade
 {
   static protected $pluginsToConfigure = [];
