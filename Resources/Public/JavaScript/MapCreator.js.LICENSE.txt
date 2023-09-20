@@ -5,9 +5,9 @@
 
 /*! ../Data/AddressItem */
 
-/*! ../Leaflet/AddressMarker */
+/*! ../Data/Types */
 
-/*! ../Types */
+/*! ../Leaflet/AddressMarker */
 
 /*! ./Controller/AddressListController */
 
@@ -17,10 +17,6 @@
 
 /*! leaflet.markercluster */
 
-/*!************************************************!*\
-  !*** ../Resources/Private/TypeScript/Types.ts ***!
-  \************************************************/
-
 /*!*************************************************!*\
   !*** ../Resources/Private/Scss/MapCreator.scss ***!
   \*************************************************/
@@ -28,6 +24,10 @@
 /*!**************************************************!*\
   !*** ./node_modules/leaflet/dist/leaflet-src.js ***!
   \**************************************************/
+
+/*!*****************************************************!*\
+  !*** ../Resources/Private/TypeScript/Data/Types.ts ***!
+  \*****************************************************/
 
 /*!*****************************************************!*\
   !*** ../Resources/Private/TypeScript/MapCreator.ts ***!

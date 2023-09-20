@@ -1,7 +1,7 @@
 import AddressItem from '../Data/AddressItem';
 import L from "leaflet";
 import "leaflet.markercluster";
-import { onAddressItemSelectedCallBack, SelectedTriggerReason } from '../Types';
+import { onAddressItemSelectedCallBack, SelectedTriggerReason } from '../Data/Types';
 import AddressMarker from '../Leaflet/AddressMarker';
 
 export default class LeafletMapController {

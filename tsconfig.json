@@ -11,12 +11,11 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./.build/node_modules",
+    "baseUrl": "./Resoures/Private/TypeScript",
     "paths": {
       "*": [
-        "../@types/*",
-        "../node_modules/@types/*",
-        "../node_modules/*"
+        "../../../.build/node_modules/@types/*",
+        "../../../.build/node_modules/*"
       ]
     },
  
