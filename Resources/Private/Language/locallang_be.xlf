@@ -42,6 +42,9 @@
 			<trans-unit id="content_element.map.settings.enablecluster">
 				<source>Cluster the markers</source>
 			</trans-unit>	
+			<trans-unit id="content_element.map.settings.enablemarkerpopup">
+				<source>Enable marker popup on click</source>
+			</trans-unit>
     </body>
   </file>
 </xliff>
