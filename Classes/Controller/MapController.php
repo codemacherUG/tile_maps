@@ -47,8 +47,11 @@ class MapController extends ActionController
     $extSettings['grayscale'] = $contentObj->data['layout']  == '1677587808';
     $extSettings['resourceUrl'] = PathUtility::getPublicResourceWebPath($this->settings['iconPath']);
 
-    // categories by comma separated list
-    $categoryIdList = $this->settings["categories"];
+    $categoryIdList = null;
+    if (array_key_exists('categories', $this->settings)) {
+       // categories by comma separated list
+      $categoryIdList = $this->settings["categories"];
+    }
 
     if ($categoryIdList) {
         $categoryIdList = GeneralUtility::intExplode(',', (string)$categoryIdList, true);

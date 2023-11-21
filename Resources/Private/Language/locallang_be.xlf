@@ -28,7 +28,7 @@
 				<source>Minimal Zoomlevel</source>
 			</trans-unit>
 			<trans-unit id="content_element.map.settings.maxzoom">
-				<source>Maximal Zoomlevel</source>
+				<source>Maximum Zoomlevel</source>
 			</trans-unit>
 			<trans-unit id="content_element.map.settings.initialview">
 				<source>Inital center and  zoomlevel ( Format: Lng, Lat, Zoomlevel )</source>
