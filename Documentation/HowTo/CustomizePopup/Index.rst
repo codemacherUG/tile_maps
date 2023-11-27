@@ -7,7 +7,7 @@
 Customize Marker Popup
 ================
 
-If you want to customize the output of the marker popup, you only have to cover the partial `PopupContent.html`.
+If you want to customize the output of the marker popup, you only need to overwrite the `PopupContent.html` partial.
 
 Set the TS Constant plugin.tx_tilemaps.view.partialRootPath to your extension.
 

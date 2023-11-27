@@ -27,21 +27,18 @@ If you want to install tile proxy traditionally with ExtensionManager, follow th
 
 #. Switch over to `Get Extensions`
 
-#. Search for `tile maps`
+#. Search for `tile_maps`
 
 #. Install extension
 
 
-Include TypoScript template
+Include TypoScript Template
 ===========================
 
-It is necessary to include at least the basic TypoScript provided by this
-extension.
+You need to include at least the basic TypoScript provided by this extension.
 
-Go module :guilabel:`Web > Template` and chose your root page. It should
-already contain a TypoScript template record. Switch to view
+Go to the module :guilabel:`Web > Template` and select your root page. It should already have a TypoScript template record. Switch to the view
 :guilabel:`Info/Modify` and click on :guilabel:`Edit the whole template record`.
 
-Switch to tab :guilabel:`Includes` and add the following templates from the list
-to the right: :guilabel:`Tile Maps (tile_maps)`.
+Switch to the tab :guilabel:`Includes` and add the following templates from the list on the right: :guilabel:`Tile Maps (tile_maps)`.
 

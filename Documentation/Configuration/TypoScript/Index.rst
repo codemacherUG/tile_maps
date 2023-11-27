@@ -7,8 +7,7 @@
 TypoScript
 ==========
 
-To make adjustments to the output of markers, for example, you can use the following settings 
-can be used in their own extension.
+To make adjustments to the output of markers, for example, you can use the following settings in your own extension.
 
 view
 ====
@@ -42,7 +41,7 @@ iconPath
 
 Default: `EXT:tile_maps/Resources/Public/Icons/`
 
-Order in which the icons for the markers must be located. 
+Directory path in which the marker icons must be located. 
 
 defaultMarkerIcon
 ----------------
@@ -62,7 +61,7 @@ Default:
 
 Defines the representation of a marker.
 This corresponds to the maker definition of Leaflet.
-You can find more information `here <https://leafletjs.com/examples/custom-icons/>`
+You can find more information here: `<https://leafletjs.com/examples/custom-icons/>`
 
 
 hightlightMarkerIcon
@@ -81,6 +80,5 @@ Default:
     shadowSize = 41, 41
   }
 
-Defines the representation of a highlighted marker.
-This corresponds to the maker definition of Leaflet.
-You can find more information `here <https://leafletjs.com/examples/custom-icons/>`
+Defines the representation of a highlighted marker. This corresponds to the maker definition of Leaflet.
+You can find more information here `<https://leafletjs.com/examples/custom-icons/>`
