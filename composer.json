@@ -1,6 +1,6 @@
 {
   "name": "codemacher/tile_maps",
-  "description": "TODO",
+  "description": "Tile Maps allows in connection with Tile Proxy(tile_proxy) a GDPR compliant integration of OpenStreepMap maps without additional cookie dialog.",
   "type": "typo3-cms-extension",
   "homepage": "https://extensions.typo3.org/extension/tile_maps",
   "authors": [
