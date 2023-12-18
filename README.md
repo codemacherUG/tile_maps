@@ -13,6 +13,6 @@ Markers can be created with the help of tt_address data records.
 
 |                  | URL                                                             |
 |------------------|-----------------------------------------------------------------|
-| **Repository:**  | https://github.com/codemacherUG/tile_maps/                     |
-| **Read online:** | https://docs.typo3.org/p/codemacher/tile_maps/main/en-us/      |
-| **TER:**         | https://extensions.typo3.org/extension/tile_maps               |
+| **Repository:**  | https://github.com/codemacherUG/tile_maps/                      |
+| **Read online:** | https://docs.typo3.org/p/codemacher/tile_maps/1.0/en-us/        |
+| **TER:**         | https://extensions.typo3.org/extension/tile_maps                |
