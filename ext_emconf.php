@@ -2,7 +2,7 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
 	'title' => 'Tile Maps',
-	'description' => 'TODO',
+	'description' => 'Tile Maps allows in connection with Tile Proxy(tile_proxy) a GDPR compliant integration of OpenStreepMap maps without additional cookie dialog.',
 	'author' => 'Thomas Rokohl (codemacher)',
 	'author_email' => 'mail@codemacher.de',
 	'category' => 'plugin',
