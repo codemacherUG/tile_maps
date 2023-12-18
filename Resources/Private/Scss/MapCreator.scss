@@ -1,0 +1,53 @@
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "variables";
+
+.frame-type-tilemaps_map {
+  font-size: var(--tile_maps--font-size);
+  line-height: var(--tile_maps--line-height);
+  font-weight: normal;
+  height: var(--tile_maps--height);
+  max-height: var(--tile_maps--max-height);
+  width: var(--tile_maps--width);
+  
+  &.frame-layout-1677587808 {
+    .leaflet-tile-pane {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+  }
+
+  .tile-maps-container {
+    display: flex;
+    flex-wrap: no-wrap;
+    height: 100%;
+    
+    .map-wrapper {
+      width: 100%;
+      height: var(--tile_maps--map--height);
+      max-height: var(--tile_maps--map--max-height);
+      min-height: 300px;
+      .map {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .content-wrapper {
+      width: 100%;
+      height: var(--tile_maps--content--height);
+      max-height: var(--tile_maps--content--max-height);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(var(--tile_maps--content--color-background-rgb));
+    }
+
+    .hidden {
+      display: none;
+    }
+  }
+
+}

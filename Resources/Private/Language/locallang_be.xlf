@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2023-02-28T19:58:00Z" product-name="tile_maps">
+    <header />
+    <body>
+			<trans-unit id="content_element.map">
+				<source>Map</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.description">
+				<source>Output a OpenStreetMap</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.endpoint">
+				<source>Tile Proxy Endpoint</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.setmaxbounds">
+				<source>Set the bounding box of the endpoint as maximum bounds of the map</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.fitBounds">
+				<source>Sets a map view that contains the marker with the maximum zoom level possible.</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.fitBoundsPadding">
+				<source>The padding for fitBounds</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.yes">
+				<source>Yes</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.minzoom">
+				<source>Minimal Zoomlevel</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.maxzoom">
+				<source>Maximum Zoomlevel</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.initialview">
+				<source>Inital center and  zoomlevel ( Format: Lng, Lat, Zoomlevel )</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.pages">
+				<source>Source folder for markers(tt_address)</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.tab.general">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="content_element.map.settings.enablecluster">
+				<source>Cluster the markers</source>
+			</trans-unit>	
+			<trans-unit id="content_element.map.settings.enablemarkerpopup">
+				<source>Enable marker popup on click</source>
+			</trans-unit>
+    </body>
+  </file>
+</xliff>

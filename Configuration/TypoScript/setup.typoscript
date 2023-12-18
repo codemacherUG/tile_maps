@@ -1,0 +1,2 @@
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:tile_maps/Configuration/TypoScript/Config/"          extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:tile_maps/Configuration/TypoScript/Page/"            extensions="typoscript">

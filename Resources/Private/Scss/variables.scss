@@ -1,0 +1,13 @@
+:root {
+  --tile_maps--height                                  : auto;
+  --tile_maps--max-height                              : none;
+  --tile_maps--width                                   : 100%;
+  --tile_maps--font-size                               : 20px;
+  --tile_maps--color-primary                           : #000;
+  --tile_maps--line-height                             : 1.1;
+  --tile_maps--map--height                             : auto;
+  --tile_maps--map--max-height                         : 80vh;
+  --tile_maps--content--height                         : var(--tile_maps--map--height);
+  --tile_maps--content--max-height                     : var(--tile_maps--map--max-height);
+  --tile_maps--content--color-background-rgb           : 247, 247, 247;
+}

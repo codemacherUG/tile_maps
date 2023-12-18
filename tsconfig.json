@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "./Resoures/Public/JavaScript",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "module": "es6",
+    "target": "ES2016",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./Resoures/Private/TypeScript",
+    "paths": {
+      "*": [
+        "../../../.build/node_modules/@types/*",
+        "../../../.build/node_modules/*"
+      ]
+    },
+ 
+  }
+}

@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<section class="tile-maps-container">
+  <div class="map-wrapper">
+    <div class="map" data-endpoint="{f:uri.page(pageUid:settings.tileEndpoint)}"
+      data-settings="{f:format.json(value: settings)}"></div>
+  </div>
+  <div class="content-wrapper hidden">
+    <div class="address-items">
+      <div class="address-items__list">
+        <f:for each="{addresses}" as="address">
+          <f:render partial="AddressItem" arguments="{item:address,settings:settings}" />
+        </f:for>
+      </div>
+    </div>
+  </div>
+</section>

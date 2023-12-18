@@ -1,0 +1,8 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="address-item hidden" data-uid="{item.uid}">
+  <f:render partial="address" arguments="{item:item, exportLatLng:1}" />
+  <div class="address-item__popupcontent">
+    <f:render partial="popupContent" arguments="{item:item}" />
+  </div>
+</div>
+

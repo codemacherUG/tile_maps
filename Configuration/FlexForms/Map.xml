@@ -1,0 +1,157 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.tab.general</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.tileEndpoint>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.endpoint</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <foreign_table>pages</foreign_table>
+                <minitems>1</minitems>
+                <foreign_table_where>AND doktype = 601</foreign_table_where>
+              </config>
+            </TCEforms>
+          </settings.tileEndpoint>
+          <settings.initialView>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.initialview</label>
+              <config>
+                <type>user</type>
+                <renderType>centerzoommap</renderType>
+                <eval>trim,required</eval>
+                <default>11.941125, 51.498396, 14</default>
+              </config>
+            </TCEforms>
+          </settings.initialView>
+          <settings.setMaxBounds>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.setmaxbounds</label>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.setMaxBounds>
+          <settings.fitBounds>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.fitBounds</label>
+              <onChange>reload</onChange>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.fitBounds>
+          <settings.fitBoundsPadding>
+            <TCEforms>
+              <displayCond>FIELD:settings.fitBounds:=:1</displayCond>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.fitBoundsPadding</label>
+              <config>
+                <type>input</type>
+                <eval>trim,required</eval>
+                <default>20,20</default>
+              </config>
+            </TCEforms>
+          </settings.fitBoundsPadding>
+          <settings.minZoom>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.minzoom</label>
+              <config>
+                <type>input</type>
+                <size>10</size>
+                <eval>trim,int</eval>
+                <range>
+                  <lower>0</lower>
+                  <upper>18</upper>
+                </range>
+                <default>14</default>
+                <slider>
+                  <step>1</step>
+                  <width>200</width>
+                </slider>
+              </config>
+            </TCEforms>
+          </settings.minZoom>
+          <settings.maxZoom>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.maxzoom</label>
+              <config>
+                <type>input</type>
+                <size>10</size>
+                <eval>trim,int</eval>
+                <range>
+                  <lower>0</lower>
+                  <upper>18</upper>
+                </range>
+                <default>18</default>
+                <slider>
+                  <step>1</step>
+                  <width>200</width>
+                </slider>
+              </config>
+            </TCEforms>
+          </settings.maxZoom>
+          <settings.enableMarkerPopUp>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.enablemarkerpopup</label>
+              <config>
+                <type>check</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.enableMarkerPopUp>
+          <settings.enableCluster>
+            <TCEforms>
+              <label>
+                LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.enablecluster</label>
+              <config>
+                <type>check</type>
+                <default>1</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:tile_maps/Resources/Private/Language/locallang_be.xlf:content_element.map.settings.yes</numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.enableCluster>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

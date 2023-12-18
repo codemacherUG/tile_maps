@@ -1,0 +1,43 @@
+plugin.tx_tilemaps {
+	view {
+		templateRootPaths {
+			0 = EXT:tile_maps/Resources/Private/Templates/
+			5 = {$plugin.tx_tilemaps.view.templateRootPath}
+		}
+
+		partialRootPaths {
+			0 = EXT:tile_maps/Resources/Private/Partials/
+			5 = {$plugin.tx_tilemaps.view.partialRootPath}
+		}
+
+		layoutRootPaths {
+			0 = EXT:tile_maps/Resources/Private/Layouts/
+			5 = {$plugin.tx_tilemaps.view.layoutRootPath}
+		}
+	}
+	settings {
+		iconPath = EXT:tile_maps/Resources/Public/Icons/
+		defaultMarkerIcon {
+			iconName = marker-icon.png
+			iconName2x = marker-icon-2x.png
+			shadowIconName = marker-shadow.png
+			iconSize = 25, 41
+      iconAnchor = 12, 41
+      popupAnchor = 1, -34
+      tooltipAnchor =  16, -28
+      shadowSize = 41, 41
+		}
+		hightlightMarkerIcon {
+			iconName = marker-highlight-icon.png
+			iconName2x = marker-highlight-icon-2x.png
+			shadowIconName = marker-highlight-shadow.png		
+		  iconSize = 25, 41
+      iconAnchor = 12, 41
+      popupAnchor = 1, -34
+      tooltipAnchor = 16, -28
+      shadowSize = 41, 41
+		}
+	}
+}
+
+

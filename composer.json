@@ -1,0 +1,48 @@
+{
+  "name": "codemacher/tile_maps",
+  "description": "TODO",
+  "type": "typo3-cms-extension",
+  "homepage": "https://extensions.typo3.org/extension/tile_maps",
+  "authors": [
+    {
+      "name": "Thomas Rokohl",
+      "homepage": "https://codemacher.de"
+    }
+  ],
+  "license": [
+    "GPL-2.0-or-later"
+  ],
+  "support": {
+    "docs": "https://docs.typo3.org/p/codemacher/tile_maps/main/en-us/",
+    "issues": "https://github.com/codemacherUG/tile_maps/issues",
+    "source": "https://github.com/codemacherUG/tile_maps"
+  },
+  "keywords": [
+    "TYPO3 CMS",
+    "extension",
+    "OSM",
+    "OpenStreetMap",
+    "DSGVO",
+    "GDPR",
+    "Tile",
+    "Proxy",
+    "Geocoding",
+    "Nominatim"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Codemacher\\TileMaps\\": "Classes"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "tile_maps"
+    }
+  },
+  "require": {
+    "typo3/cms-core": "^11.5|^12.4",
+    "php": "^7.4.0 || ^8",
+    "codemacher/tile_proxy": "@dev",
+    "friendsoftypo3/tt-address": "^7.1|^8.0"
+  }
+}

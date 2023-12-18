@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="general">
+  <span property="name">{item.name}</span>
+  <f:if condition="{exportLatLng}">
+    <input type="hidden" name="latitude" value="{item.latitude}" />
+    <input type="hidden" name="longitude" value="{item.longitude}" />
+  </f:if>
+  <div property="address" typeof="PostalAddress">
+    <span property="streetAddress">
+      {item.address}
+    </span>
+    <div class="city">
+      <span property="postalCode">{item.zip}</span>&nbsp;<span property="addressLocality">{item.city}</span>
+    </div>
+  </div>
+  <span property="telephone">{item.phone}</span>
+  <span>
+    <f:link.email email="{item.email}" additionalAttributes="{property:'email'}" />
+  </span>
+  <f:if condition="{item.www}">
+    <span>
+      <f:link.external uri="{item.www}" target="_blank" additionalAttributes="{property:'url'}">{item.www}
+      </f:link.external>
+    </span>
+  </f:if>
+</div>

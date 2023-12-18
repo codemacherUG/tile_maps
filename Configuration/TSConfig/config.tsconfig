@@ -1,0 +1,6 @@
+TCEFORM.tt_content.layout.types.tilemaps_map {
+  disabled = 0
+  removeItems = 1, 2, 3
+  addItems.1677587808 = Grayscale
+}
+ 

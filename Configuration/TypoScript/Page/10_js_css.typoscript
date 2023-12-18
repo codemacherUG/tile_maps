@@ -1,0 +1,12 @@
+page {
+  includeCSS {
+   tilemapsmapcreator = EXT:tile_maps/Resources/Public/Css/MapCreator.css
+  }
+
+  includeJSFooterlibs {
+    jquery = EXT:tile_maps/Resources/Public/JavaScript/vendor/jquery/jquery-3.7.1.min.js
+  }
+  includeJSFooter {
+    tilemapsmapcreator = EXT:tile_maps/Resources/Public/JavaScript/MapCreator.js
+  }
+}
