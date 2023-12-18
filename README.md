@@ -5,8 +5,11 @@
 [![License](https://img.shields.io/github/license/codemacherUG/tile_maps)](https://packagist.org/packages/codemacher/tile_maps)
 [![Total downloads](https://poser.pugx.org/codemacher/tile_maps/downloads.svg)](https://packagist.org/packages/codemacher/tile_maps)
 
-TODO
 
+Tile Maps allows in connection with Tile Proxy(tile_proxy) a GDPR compliant integration of OpenStreepMap maps without 
+additional cookie dialog.
+No additional requests from third parties on the part of the customer are required.
+Markers can be created with the help of tt_address data records.
 
 |                  | URL                                                             |
 |------------------|-----------------------------------------------------------------|
