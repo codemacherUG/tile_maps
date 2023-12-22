@@ -12,11 +12,9 @@ class AddressRepository extends RepositoryAddressRepository
     $query = $this->createQuery();
     $result = $query->matching(
       $query->logicalAnd(
-        [
           $query->in('pid', $pids),
           $query->logicalNot($query->equals('latitude', 0)),
           $query->logicalNot($query->equals('longitude', 0))
-        ]
       )
     )->execute();
     return $result;
