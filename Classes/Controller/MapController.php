@@ -16,11 +16,15 @@ use Codemacher\TileMaps\Domain\Repository\AddressRepository;
 
 class MapController extends ActionController
 {
+    private FlexFormService $flexFormService;
+    private AddressRepository $addressRepository;
     // Inject FlexFormService
     public function __construct(
-        private readonly FlexFormService $flexFormService,
-        private readonly AddressRepository $addressRepository
+        FlexFormService $flexFormService,
+        AddressRepository $addressRepository
     ) {
+        $this->flexFormService = $flexFormService;
+        $this->addressRepository = $addressRepository;
     }
 
     public function displayAction(): ResponseInterface

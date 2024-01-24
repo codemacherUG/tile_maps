@@ -67,6 +67,7 @@ class PluginRegisterFacade
 
     private static function registerIconsForPlugin(Plugin $plugin): void
     {
+        /** @var IconRegistry $iconRegistry */
         $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
         $iconRegistry->registerIcon(
             self::getIconIdentifier($plugin),
