@@ -9,22 +9,18 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
-use Codemacher\TileMaps\Domain\Repository\CategoryRepository;
 use Codemacher\TileMaps\Domain\Repository\AddressRepository;
+use Codemacher\TileMaps\Domain\Repository\AddressRepositoryInterface;
+use Codemacher\TileMaps\Domain\Repository\CategoryRepository;
 
 class MapController extends ActionController
 {
     private FlexFormService $flexFormService;
-    private AddressRepository $addressRepository;
+    
     // Inject FlexFormService
-    public function __construct(
-        FlexFormService $flexFormService,
-        AddressRepository $addressRepository
-    ) {
+    public function __construct(FlexFormService $flexFormService) {
         $this->flexFormService = $flexFormService;
-        $this->addressRepository = $addressRepository;
     }
 
     public function displayAction(): ResponseInterface
@@ -36,14 +32,9 @@ class MapController extends ActionController
         $contentObj = $this->configurationManager->getContentObject();
         $extSettings = $this->settings;
 
-        $tileEndpointPageRecord = BackendUtility::getRecord("pages", $extSettings['tileEndpoint']);
+        $tileEndpointPageRecord = BackendUtility::getRecord('pages', $extSettings['tileEndpoint']);
         $tileEndpointPageRecordFlexFormSettings = $this->flexFormService->convertFlexFormContentToArray($tileEndpointPageRecord['tx_tileproxy_flexform'])['settings'];
 
-        $this->addressRepository->setDefaultOrderings(['name' => QueryInterface::ORDER_ASCENDING]);
-
-        $pidsStr =  $contentObj->data["pages"] ?? "";
-        $pids = explode(',', $pidsStr);
-        $addresses = $this->addressRepository->findByPids($pids);
         $extSettings['bbox'] = $tileEndpointPageRecordFlexFormSettings['bbox'];
         $extSettings['grayscale'] = $contentObj->data['layout']  == '1677587808';
         $extSettings['resourceUrl'] = PathUtility::getPublicResourceWebPath($this->settings['iconPath']);
@@ -51,7 +42,7 @@ class MapController extends ActionController
         $categoryIdList = null;
         if (array_key_exists('categories', $this->settings)) {
             // categories by comma separated list
-            $categoryIdList = $this->settings["categories"];
+            $categoryIdList = $this->settings['categories'];
         }
 
         if ($categoryIdList) {
@@ -59,13 +50,18 @@ class MapController extends ActionController
             /** @var CategoryRepository $categoryRepository */
             $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
             $categories = $categoryRepository->findByUids($categoryIdList);
-            $this->view->assign("filterCategories", $categories);
+            $this->view->assign('filterCategories', $categories);
         }
 
+        $addresses = $this->getAddressRepository()->fetchAddresses();
 
-        $this->view->assign("addresses", $addresses);
-        $this->view->assign("data", $contentObj->data);
-        $this->view->assign("settings", $extSettings);
+        $this->view->assign('addresses', $addresses);
+        $this->view->assign('data', $contentObj->data);
+        $this->view->assign('settings', $extSettings);
         return $this->htmlResponse();
+    }
+
+    protected function getAddressRepository(): AddressRepositoryInterface {
+        return GeneralUtility::makeInstance(AddressRepository::class);
     }
 }
