@@ -19,7 +19,8 @@ use Codemacher\TileMaps\Controller\MapController;
       ->addShowItemConfig([
         '--palette--;;headers',
         'pi_flexform',
-        'pages'
+        'pages',
+        'recursive'
       ])
       ->setControllerActions([MapController::class => "display"])
       ->addCustomConfig(

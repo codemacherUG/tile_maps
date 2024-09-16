@@ -34,7 +34,7 @@
 				<source>Inital center and  zoomlevel ( Format: Lng, Lat, Zoomlevel )</source>
 			</trans-unit>
 			<trans-unit id="content_element.map.pages">
-				<source>Source folder for markers(tt_address)</source>
+				<source>Source folder for markers (tt_address)</source>
 			</trans-unit>
 			<trans-unit id="content_element.map.settings.tab.general">
 				<source>General</source>
