@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./Resoures/Public/JavaScript",
+    "outDir": "./Resources/Public/JavaScript",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
@@ -11,13 +11,12 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./Resoures/Private/TypeScript",
+    "baseUrl": "./Resources/Private/TypeScript",
     "paths": {
       "*": [
         "../../../.build/node_modules/@types/*",
         "../../../.build/node_modules/*"
       ]
     },
- 
   }
 }

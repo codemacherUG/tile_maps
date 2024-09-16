@@ -6,5 +6,4 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Address as ModelAddress;
 
 class Address extends ModelAddress
 {
-
 }
