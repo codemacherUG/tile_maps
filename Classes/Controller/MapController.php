@@ -9,18 +9,23 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 use Codemacher\TileMaps\Domain\Repository\AddressRepository;
-use Codemacher\TileMaps\Domain\Repository\AddressRepositoryInterface;
 use Codemacher\TileMaps\Domain\Repository\CategoryRepository;
 
 class MapController extends ActionController
 {
     private FlexFormService $flexFormService;
+    private AddressRepository $addressRepository;
     
     // Inject FlexFormService
-    public function __construct(FlexFormService $flexFormService) {
+    public function __construct(
+        FlexFormService $flexFormService,
+        AddressRepository $addressRepository,
+    ) {
         $this->flexFormService = $flexFormService;
+        $this->addressRepository = $addressRepository;
     }
 
     public function displayAction(): ResponseInterface
@@ -53,15 +58,15 @@ class MapController extends ActionController
             $this->view->assign('filterCategories', $categories);
         }
 
-        $addresses = $this->getAddressRepository()->fetchAddresses();
+        $this->addressRepository->setDefaultOrderings(['name' => QueryInterface::ORDER_ASCENDING]);
+
+        $pidsStr =  $contentObj->data['pages'] ?? '';
+        $pids = explode(',', $pidsStr);
+        $addresses = $this->addressRepository->findByPids($pids);
 
         $this->view->assign('addresses', $addresses);
         $this->view->assign('data', $contentObj->data);
         $this->view->assign('settings', $extSettings);
         return $this->htmlResponse();
-    }
-
-    protected function getAddressRepository(): AddressRepositoryInterface {
-        return GeneralUtility::makeInstance(AddressRepository::class);
     }
 }

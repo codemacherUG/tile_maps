@@ -4,16 +4,9 @@ namespace Codemacher\TileMaps\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class AddressRepository extends Repository implements AddressRepositoryInterface
+class AddressRepository extends Repository
 {
-  public function fetchAddresses(): array {
-    return $this->findAll()->toArray();
-  }
-
   /**
-    * @deprecated instead, use the storage page configuration in the TYPO3-backend
-    * and call findAll() or fetchAddresses().
-    *
     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
     * @phpstan-ignore-next-line
     */
