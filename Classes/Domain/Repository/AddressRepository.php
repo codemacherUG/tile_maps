@@ -2,10 +2,15 @@
 
 namespace Codemacher\TileMaps\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class AddressRepository extends Repository implements AddressRepositoryInterface
 {
+  protected $defaultOrderings = [
+    'sorting' => QueryInterface::ORDER_ASCENDING
+  ];
+
   public function fetchAddresses(): array {
     return $this->findAll()->toArray();
   }
