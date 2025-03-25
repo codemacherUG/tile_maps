@@ -42,7 +42,7 @@
   "require": {
     "typo3/cms-core": "^12.4|^13.4",
     "php": "^8",
-    "codemacher/tile_proxy": "^1.3.3",
+    "codemacher/tile_proxy": "@dev",
     "friendsoftypo3/tt-address": "^9.0"
   }
 }
