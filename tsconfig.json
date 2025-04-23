@@ -12,6 +12,9 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./Resources/Private/TypeScript",
+    "typeRoots": [
+      "./.build/node_modules/@types"
+    ],
     "paths": {
       "*": [
         "../../../.build/node_modules/@types/*",
