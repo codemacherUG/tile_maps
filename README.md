@@ -1,7 +1,7 @@
 # TYPO3 extension `tile_maps`
 
 [![TYPO3 V12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
-[![TYPO3 V11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
+[![TYPO3 V13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
 [![License](https://img.shields.io/github/license/codemacherUG/tile_maps)](https://packagist.org/packages/codemacher/tile_maps)
 [![Total downloads](https://poser.pugx.org/codemacher/tile_maps/downloads)](https://packagist.org/packages/codemacher/tile_maps)
 

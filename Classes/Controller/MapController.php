@@ -15,57 +15,59 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 class MapController extends ActionController
 {
-  private FlexFormService $flexFormService;
+    private FlexFormService $flexFormService;
 
-  // Inject FlexFormService
-  public function __construct(FlexFormService $flexFormService)
-  {
-    $this->flexFormService = $flexFormService;
-  }
-
-  public function displayAction(): ResponseInterface
-  {
-    /** @var PageRenderer $pageRenderer */
-    $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-    $pageRenderer->addInlineLanguageLabelFile('EXT:tile_maps/Resources/Private/Language/locallang.xlf');
-
-    /** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj */
-    $contentObj = $this->request->getAttribute('currentContentObject');
-    $extSettings = $this->settings;
-
-    
-    $tileEndpointPageRecord = BackendUtility::getRecord('pages', $extSettings['tileEndpoint']);
-    $tileEndpointPageRecordFlexFormSettings = $this->flexFormService->convertFlexFormContentToArray($tileEndpointPageRecord['tx_tileproxy_flexform'])['settings'];
-
-    $extSettings['bbox'] = $tileEndpointPageRecordFlexFormSettings['bbox'];
-    $extSettings['grayscale'] = $contentObj->data['layout'] == '1677587808';
-    $extSettings['resourceUrl'] = PathUtility::getPublicResourceWebPath($this->settings['iconPath']);
-
-    $categoryIdList = null;
-    if (array_key_exists('categories', $this->settings)) {
-      // categories by comma separated list
-      $categoryIdList = $this->settings['categories'];
+    // Inject FlexFormService
+    public function __construct(FlexFormService $flexFormService)
+    {
+        $this->flexFormService = $flexFormService;
     }
 
-    if ($categoryIdList) {
-      $categoryIdList = GeneralUtility::intExplode(',', (string) $categoryIdList, true);
-      /** @var CategoryRepository $categoryRepository */
-      $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
-      $categories = $categoryRepository->findByUids($categoryIdList);
-      $this->view->assign('filterCategories', $categories);
+    public function displayAction(): ResponseInterface
+    {
+        /** @var PageRenderer $pageRenderer */
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->addInlineLanguageLabelFile('EXT:tile_maps/Resources/Private/Language/locallang.xlf');
+
+        /** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObj */
+        $contentObj = $this->request->getAttribute('currentContentObject');
+        $extSettings = $this->settings;
+
+
+        $tileEndpointPageRecord = BackendUtility::getRecord('pages', $extSettings['tileEndpoint']);
+        $tileEndpointPageRecordFlexFormSettings = $this->flexFormService->convertFlexFormContentToArray($tileEndpointPageRecord['tx_tileproxy_flexform'])['settings'];
+
+        $extSettings['bbox'] = $tileEndpointPageRecordFlexFormSettings['bbox'];
+        $extSettings['grayscale'] = $contentObj->data['layout'] == '1677587808';
+
+        $extSettings['resourceUrl'] = PathUtility::getPublicResourceWebPath($this->settings['iconPath'] ?? 'EXT:tile_maps/Resources/Public/Icons/');
+
+
+        $categoryIdList = null;
+        if (array_key_exists('categories', $this->settings)) {
+            // categories by comma separated list
+            $categoryIdList = $this->settings['categories'];
+        }
+
+        if ($categoryIdList) {
+            $categoryIdList = GeneralUtility::intExplode(',', (string) $categoryIdList, true);
+            /** @var CategoryRepository $categoryRepository */
+            $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
+            $categories = $categoryRepository->findByUids($categoryIdList);
+            $this->view->assign('filterCategories', $categories);
+        }
+
+        $addresses = $this->getAddressRepository()->fetchAddresses();
+
+        $this->view->assign('addresses', $addresses);
+        $this->view->assign('data', $contentObj->data);
+        $this->view->assign('settings', $extSettings);
+
+        return $this->htmlResponse();
     }
 
-    $addresses = $this->getAddressRepository()->fetchAddresses();
-
-    $this->view->assign('addresses', $addresses);
-    $this->view->assign('data', $contentObj->data);
-    $this->view->assign('settings', $extSettings);
-
-    return $this->htmlResponse();
-  }
-
-  protected function getAddressRepository(): AddressRepositoryInterface
-  {
-    return GeneralUtility::makeInstance(AddressRepository::class);
-  }
+    protected function getAddressRepository(): AddressRepositoryInterface
+    {
+        return GeneralUtility::makeInstance(AddressRepository::class);
+    }
 }

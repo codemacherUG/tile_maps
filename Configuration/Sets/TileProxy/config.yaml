@@ -1,0 +1,4 @@
+name: codemacher/tile_maps
+label: Tile Maps
+dependencies:
+  - codemacher/tile_proxy

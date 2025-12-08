@@ -2,22 +2,36 @@
 
 namespace Codemacher\TileMaps\Utils;
 
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use Codemacher\TileMaps\Domain\Model\Plugin;
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
-
-use Codemacher\TileMaps\Domain\Model\Plugin;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 class PluginRegisterFacade
 {
-    protected static array $pluginsToConfigure = [];
-    protected static array $pluginsToRegister = [];
+    /**
+     * @var array<Plugin>
+     */
+    protected static $pluginsToConfigure = [];
 
-    public static function configureAllPlugins(): void
+    /**
+     * @var array<Plugin>
+     */
+    protected static $pluginsToRegister = [];
+
+    public static function configureAllPlugins(string $extKey, string $relPathToConfigFiles): void
     {
+        $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
+        $iconRegistry->registerIcon(
+            'smart-plugin-default-icon-ce',
+            SvgIconProvider::class,
+            ['source' => 'EXT:smart_plugin/Resources/Public/Icons/default-icon-ce.svg']
+        );
+
+        self::loadPluginConfigurations($extKey, $relPathToConfigFiles);
         /** @var Plugin $plugin */
         foreach (self::$pluginsToConfigure as $plugin) {
             ExtensionUtility::configurePlugin(
@@ -27,47 +41,54 @@ class PluginRegisterFacade
                 $plugin->getNonCacheableControllerActions(),
                 $plugin->getPluginType()
             );
-            self::addToWizard($plugin);
+
+
+
+            self::registerIconsForPlugin($plugin);
+
         }
+
         self::$pluginsToConfigure = [];
     }
 
-    private static function buildDefValues(Plugin $plugin): string
+    public static function getExtensionShortName(string $extensionKey): string
     {
-        $typeId = self::getPluginSignature($plugin);
-        if ($plugin->getPluginType() == ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT) {
-            return "
-        tt_content_defValues {
-          CType = $typeId
-        }";
-        }
-        return "
-      tt_content_defValues {
-        CType = list
-        list_type = $typeId
-      }";
+        $extensionName = preg_replace('/[\s,_]+/', '', $extensionKey);
+
+        return strtolower($extensionName);
     }
 
-    private static function buildPreViewRenderingDefinition(Plugin $plugin): string
+    private static function loadPluginConfigurations(string $extKey, string $relPathToConfigFiles): void
     {
-        $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
-        $contentType =  self::getExtensionShortName($plugin) . '_' . self::getPluginId($plugin);
-        if (!empty($plugin->getPreViewTemplateName())) {
-            $preViewTemplateName = $plugin->getPreViewTemplateName();
-            return "web_layout.tt_content.preview.$contentType = EXT:$underscoreName/Resources/Private/Templates/ContentElementsPreview/$preViewTemplateName";
+        $extPath = ExtensionManagementUtility::extPath($extKey);
+        //$absPath = PathUtility::getAbsoluteWebPath($extPath . $relPathToConfigFiles);
+        $absPath = $extPath . $relPathToConfigFiles;
+
+        $files = glob($absPath . '/*.php');
+        if ($files === false) {
+            $files = [];
         }
-        return  "";
+        foreach ($files as $filename) {
+            include $filename;
+        }
     }
 
     private static function getIconIdentifier(Plugin $plugin): string
     {
+        if (empty($plugin->getIconFileName())) {
+            return 'smart-plugin-default-icon-ce';
+        }
+
         $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
+
         return "ext-$underscoreName-content-" . self::getPluginId($plugin) . '-icon';
     }
 
     private static function registerIconsForPlugin(Plugin $plugin): void
     {
-        /** @var IconRegistry $iconRegistry */
+        if (empty(self::getIconFilePath($plugin))) {
+            return;
+        }
         $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
         $iconRegistry->registerIcon(
             self::getIconIdentifier($plugin),
@@ -79,60 +100,40 @@ class PluginRegisterFacade
     private static function getSpeakingNameDefinition(Plugin $plugin): string
     {
         $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
+
         return "LLL:EXT:$underscoreName/Resources/Private/Language/locallang_be.xlf:content_element." . self::getPluginId($plugin);
     }
 
     private static function getSpeakingDescriptionDefinition(Plugin $plugin): string
     {
         $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
-        return "LLL:EXT:$underscoreName/Resources/Private/Language/locallang_be.xlf:content_element." . self::getPluginId($plugin) . ".description";
+
+        return "LLL:EXT:$underscoreName/Resources/Private/Language/locallang_be.xlf:content_element." . self::getPluginId($plugin) . '.description';
     }
 
-    private static function addToWizard(Plugin $plugin): void
-    {
-        $wizardGroupId = $plugin->getWizardGroupId();
-        if (empty($wizardGroupId)) {
-            return;
-        }
-        $typeId = self::getPluginSignature($plugin);
-        self::registerIconsForPlugin($plugin);
-        $tsconfig = "
-    mod {
-        wizards.newContentElement.wizardItems.$wizardGroupId {
-        elements {
-            $typeId {
-                iconIdentifier = " . self::getIconIdentifier($plugin) . "
-                title = " . self::getSpeakingNameDefinition($plugin) . "
-                description = " . self::getSpeakingDescriptionDefinition($plugin) . "
-                " . self::buildDefValues($plugin) . "
-            }   
-        }
-        show := addToList($typeId)
-      }
-      " . self::buildPreViewRenderingDefinition($plugin) . "
-    }
-    ";
-        ExtensionManagementUtility::addPageTSConfig($tsconfig);
-    }
 
     private static function buildFlexFormPathKey(Plugin $plugin): string
     {
         $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
-        return "FILE:EXT:" . $underscoreName . "/Configuration/FlexForms/" . $plugin->getPluginName() . ".xml";
+
+        return 'FILE:EXT:' . $underscoreName . '/Configuration/FlexForms/' . $plugin->getPluginName() . '.xml';
     }
 
-    private static function registerListPlugin(Plugin $plugin): void
+    private static function registerPlugin(Plugin $plugin): void
     {
-        $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
+
+        // $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
         ExtensionUtility::registerPlugin(
             $plugin->getExtensionKey(),
             $plugin->getPluginName(),
             self::getSpeakingNameDefinition($plugin),
-            self::getIconFilePath($plugin)
+            self::getIconFilePath($plugin),
+            $plugin->getWizardGroupId(),
+            self::getSpeakingDescriptionDefinition($plugin)
         );
 
         if ($plugin->isFlexFromEnabled()) {
-            $pluginSignature =  self::getExtensionShortName($plugin) . '_' . self::getPluginId($plugin);
+            $pluginSignature = ExtNameUtil::extKeyAsShortName($plugin->getExtensionKey()) . '_' . self::getPluginId($plugin);
             $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
             ExtensionManagementUtility::addPiFlexFormValue(
                 $pluginSignature,
@@ -143,9 +144,7 @@ class PluginRegisterFacade
 
     private static function registerContentType(Plugin $plugin): void
     {
-
-        $contentType =  self::getExtensionShortName($plugin) . '_' . self::getPluginId($plugin);
-        $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
+        $contentType = ExtNameUtil::extKeyAsShortName($plugin->getExtensionKey()) . '_' . self::getPluginId($plugin);
         $customConfig = $plugin->getCustomConfig();
         $config = array_merge(
             [
@@ -180,7 +179,6 @@ class PluginRegisterFacade
             ArrayUtility::mergeRecursiveWithOverrule($GLOBALS['TCA']['tt_content'], $flexFormDefinition);
         }
 
-
         ExtensionManagementUtility::addTcaSelectItem(
             'tt_content',
             'CType',
@@ -188,19 +186,20 @@ class PluginRegisterFacade
             self::getSpeakingNameDefinition($plugin),
             $contentType,
             self::getIconIdentifier($plugin),
+            $plugin->getWizardGroupId(),
+            self::getSpeakingDescriptionDefinition($plugin)
       ]
         );
     }
 
     public static function registerAllPlugins(): void
     {
-
         /** @var Plugin $plugin */
         foreach (self::$pluginsToRegister as $plugin) {
             if ($plugin->getPluginType() == ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT) {
                 self::registerContentType($plugin);
             } else {
-                self::registerListPlugin($plugin);
+                self::registerPlugin($plugin);
             }
         }
         self::$pluginsToRegister = [];
@@ -210,6 +209,7 @@ class PluginRegisterFacade
     {
         self::$pluginsToConfigure[] = $plugin;
         self::$pluginsToRegister[] = $plugin;
+
         return $plugin;
     }
 
@@ -221,19 +221,14 @@ class PluginRegisterFacade
     private static function getIconFilePath(Plugin $plugin): string
     {
         $fileName = $plugin->getIconFileName();
+        if (empty($fileName)) {
+            return '';
+        }
         $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
         $result = 'EXT:' . $underscoreName . '/Resources/Public/Icons/' . $fileName;
+
         return $result;
     }
 
-    private static function getExtensionShortName(Plugin $plugin): string
-    {
-        $extensionName = preg_replace('/[\s,_]+/', '', $plugin->getExtensionKey());
-        return strtolower($extensionName);
-    }
 
-    private static function getPluginSignature(Plugin $plugin): string
-    {
-        return self::getExtensionShortName($plugin) . '_' . self::getPluginId($plugin);
-    }
 }
