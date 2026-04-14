@@ -4,7 +4,6 @@ namespace Codemacher\TileMaps\Utils;
 
 use Codemacher\TileMaps\Domain\Model\Plugin;
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
-use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -24,12 +23,6 @@ class PluginRegisterFacade
 
     public static function configureAllPlugins(string $extKey, string $relPathToConfigFiles): void
     {
-        $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
-        $iconRegistry->registerIcon(
-            'smart-plugin-default-icon-ce',
-            SvgIconProvider::class,
-            ['source' => 'EXT:smart_plugin/Resources/Public/Icons/default-icon-ce.svg']
-        );
 
         self::loadPluginConfigurations($extKey, $relPathToConfigFiles);
         /** @var Plugin $plugin */
@@ -42,13 +35,11 @@ class PluginRegisterFacade
                 $plugin->getPluginType()
             );
 
-
-
-            self::registerIconsForPlugin($plugin);
+            
 
         }
 
-        self::$pluginsToConfigure = [];
+       // self::$pluginsToConfigure = [];
     }
 
     public static function getExtensionShortName(string $extensionKey): string
@@ -84,17 +75,20 @@ class PluginRegisterFacade
         return "ext-$underscoreName-content-" . self::getPluginId($plugin) . '-icon';
     }
 
-    private static function registerIconsForPlugin(Plugin $plugin): void
+    public static function getIcons(): array
     {
-        if (empty(self::getIconFilePath($plugin))) {
-            return;
+       // self::loadPluginConfigurations('tile_maps', 'Configuration/PluginRegistrations');
+        $icons = [];
+        foreach (self::$pluginsToConfigure as $plugin) {
+            if (empty(self::getIconFilePath($plugin))) {
+                continue;
+            }
+            $icons[self::getIconIdentifier($plugin)] = [
+                    'provider' => SvgIconProvider::class,
+                    'source' => self::getIconFilePath($plugin),
+            ];
         }
-        $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
-        $iconRegistry->registerIcon(
-            self::getIconIdentifier($plugin),
-            SvgIconProvider::class,
-            ['source' => self::getIconFilePath($plugin)]
-        );
+        return $icons;
     }
 
     private static function getSpeakingNameDefinition(Plugin $plugin): string
