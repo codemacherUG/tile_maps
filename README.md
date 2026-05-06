@@ -1,3 +1,8 @@
+> [!CAUTION]
+> **This repository has been moved.**
+>
+> **Active development:** https://git.codemacher.de/codemacher/tile_maps 
+> Please update your remotes and bookmarks.
 # TYPO3 extension `tile_maps`
 
 [![TYPO3 V12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
